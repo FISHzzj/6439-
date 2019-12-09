@@ -1,0 +1,63 @@
+<view class="su_container page">
+  <view class="oy_form_image"><image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/2.png"></image></view>  
+  <view class="su_center">
+    <view class="oy_form_list flex flex-ver">
+      <view class="oy_form_title flex flex-ver">
+          <view>你的姓名：</view>
+      </view>
+      <view class="flex-1 oy_form_right flex flex-ver">
+          <input type='text' bindinput='inputname' placeholder='请输入你的真实姓名' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder" ></input>
+      </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+      <view class="oy_form_title flex flex-ver">
+          <view>联系方式：</view>
+      </view>
+      <view class="flex-1 oy_form_right flex flex-ver">
+          <input type='tel' bindinput='inputmobile' placeholder='请输入你的手机号' class="flex-1 oy_form_input" maxlength='11' placeholder-class="oy_placeholder"  ></input>
+      </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+      <view class="oy_form_title flex flex-ver">
+          <view>身份证号：</view>
+      </view>
+      <view class="flex-1 oy_form_right flex flex-ver">
+          <input type='text' bindinput='inputshengfen' placeholder='请输入你的身份证号码' class="flex-1 oy_form_input" placeholder-class="oy_placeholder" ></input>
+      </view>
+    </view>
+    <view class="oy_form_list flex flex-ver">
+      <view class="oy_form_title flex flex-ver">
+          <view>省级地址：</view>
+      </view>
+      <view class="flex-1 oy_form_right flex flex-ver">
+        <input type='text' bindinput='inputChange' placeholder='请输入你的详细地址' class="flex-1 oy_form_input" placeholder-class="oy_placeholder"  value='{{addr_detail}}'></input>
+        <view bindtap="chose_location" class="weui-cell__hd" >
+          <view class="weui-pos"></view>
+        </view>
+      </view>
+    </view>
+    <view class="oy_from_upload flex flex-ver">
+      <view class="oy_form_title flex flex-ver">
+          <view>上传证件：</view>
+      </view>
+      <block wx:for="{{tempFilePaths}}" wx:for-item='item' wx:key='tempFilePaths'>
+        <image src="{{item}}"></image>
+      </block>
+      <view class="oy_form_img" bindtap="uploadImgBtn">
+          <image src="../../img/GIS-time.png"></image>
+      </view>
+    </view>
+    <view class="oy_form_checked flex flex-wrap flex-ver">
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox">
+          <checkbox value="请你阅读完本合同内容，并同意签约" />
+        </label>
+      </checkbox-group>
+      <text>请你阅读完本合同内容，并同意签约</text>
+    </view>
+    <view class="oy_from_btn" bindtap="shengqing">
+      立即申请
+    </view>
+  </view>
+
+</view>
