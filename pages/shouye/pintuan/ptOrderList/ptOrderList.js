@@ -1,29 +1,46 @@
 // pages/shouye/pintuan/ptOrderList/ptOrderList.js
+var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    index : 0
+    index : 0,
+    success : 0,
+    list : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getList(this.data.success);
   },
 
   tab : function(e){
     console.log(e.currentTarget.dataset.index);
     var _index = e.currentTarget.dataset.index;
     this.setData({
-      index : _index
+      index : _index,
+      list : ''
     });
   },
 
-
+  getList: function (success){
+    wx.showLoading({
+      title: '加载中',
+    })
+    e.post('/groups/team/get_list',{
+      success: this.data.success
+    },res=>{
+      console.log(res.result.list);
+      
+      this.setData({
+        list: res.result.list
+      });
+    });
+  },
 
 
 

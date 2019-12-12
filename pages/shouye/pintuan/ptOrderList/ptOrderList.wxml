@@ -5,24 +5,24 @@
   <view data-index="2" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==2? 'flex flex-c active' : 'flex flex-c'}}">失败</view>
   <view data-index="3" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==3? 'flex flex-c active' : 'flex flex-c'}}">申诉</view>
 </view>
-<view class="p10 font16" style="border-bottom:2rpx dashed red" wx:for="{{2}}" wx:key="{{index}}">
+<view class="p10 font16" style="border-bottom:2rpx dashed red" wx:for="{{list}}" wx:key="{{index}}">
   <view class="flex" style="margin-top:10rpx;">
     <!-- 图片 -->
-    <image src="" style="width;120rpx;heigth:120rpx;border:2rpx solid red;margin-right:20rpx"></image>
+    <image src="{{item.thumb}}" style="width;120rpx;heigth:120rpx;border:2rpx solid red;margin-right:20rpx"></image>
     <view style="flex:1" class="flex flex-column flex-jcsb">
-      <view style="width:100%">订单编号：<text style="color:#888">54634134545541</text></view>
+      <view style="width:100%">订单编号：<text style="color:#888">{{item.orderno}}</text></view>
       <view class="flex w100 flex-jcsb" style="flex:1">
-        <text>钟情十字项链</text>
-        <text>￥ 20.0</text>
+        <text>{{item.title}}</text>
+        <text>￥ {{item.price}}</text>
       </view>
       <view class="flex w100 flex-jcsb" style="flex:1">
-        <text class="font14" style="color:#888">文字描述</text>
+        <!-- <text class="font14" style="color:#888">文字描述</text> -->
         <text>X 2</text>
       </view>
     </view>
   </view>
   <view class="flex flex-jcsb">
     <view style="color:#888">进行中</view>
-    <view class="font18" style="color:red">实付:￥20.0</view>
+    <view class="font18" style="color:red">实付:￥{{item.realprice}}</view>
   </view>
 </view>

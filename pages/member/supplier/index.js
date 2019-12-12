@@ -54,16 +54,17 @@ Page({
     // var e = this, i = a.pdata(t).cate;
     // e.setData({ cate: i, page: 1, list: [] }),
     //   e.getList()
-    var status = t.getCache("gysdl");
-    console.log(status);
+    // var status = t.getCache("gysdl");
+    // console.log(status);
     var e = this, i = a.pdata(m).cate;
-    if (i == "shop"){
-      if (status){
-        e.setData({ cate: 'shop111' });
-      }
-    }else{
-      e.setData({ cate: i });
-    }
+    e.setData({ cate: i });
+    // if (i == "shop"){
+    //   if (status){
+    //     e.setData({ cate: 'shop111' });
+    //   }
+    // }else{
+    //   e.setData({ cate: i });
+    // }
   },
   getList: function () {
     var t = this;
@@ -393,7 +394,7 @@ Page({
           this.setData({
             cate: 'shop111'
           });
-          t.setCache('gysdl',true);
+          // t.setCache('gysdl',true);
         }else{
           wx.showToast({
             title: res.message,
