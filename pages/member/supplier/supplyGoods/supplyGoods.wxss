@@ -1,4 +1,4 @@
-/* pages/shouye/pintuan/pt_success/pt_success.wxss */
+/* pages/member/supplier/supplyGoods/supplyGoods.wxss */
 .w100{
   width: 100%;
 }
@@ -30,6 +30,9 @@
   justify-content: flex-end;
   align-items: center;
 }
+.flex-warp{
+  flex-wrap: wrap;
+}
 .text-c{
   text-align: center
 }
@@ -39,13 +42,13 @@
 .bg_red{
   background: red;
 }
-.bg_pick{
-  background: rgb(255,144,143);
-}
 .textOver{
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+}
+.font12{
+  font-size: 24rpx
 }
 .font14{
   font-size: 28rpx;
@@ -66,10 +69,12 @@
   font-size: 60rpx;
 }
 
-.text-hide {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+
+.payNav{
+  width: 100%;
+  height: 110rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 2rpx solid #888;
 }

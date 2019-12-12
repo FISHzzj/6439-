@@ -69,7 +69,10 @@
     "pages/order/pay/peerpay",
     "pages/order/pay/peerpayshare",
     "pages/order/pay/peerpaydetail",
-    "pages/shouye/pintuan/pt_more/pt_more"
+    "pages/shouye/pintuan/pt_more/pt_more",
+    "pages/member/supplier/supplyGoods/supplyGoods",
+    "pages/groups/refund/index",
+    "pages/shouye/pintuan/ptOrderList/ptOrderList"
   ],
   "global": {
     "window": {

@@ -19,18 +19,51 @@ Page({
     addr_detailhao:"",
     showbtn: !1,
     haohuoFilePaths:[] ,//产品图片
-    haohuovideoFilePaths: [] //产品视频
+    haohuovideoFilePaths: [], //产品视频
   },
   onLoad: function (t) {
-    this.getList()
+    this.getList();
+    this.getShopList();
   },
-  myTab: function (t) {
+
+  goto : function(){
+    wx:wx.navigateTo({
+      url: '/pages/member/supplier/supplyGoods/supplyGoods',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  getShopList : function(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    a.post('/supplier/goods',{
+
+    },res=>{
+      wx.hideLoading();
+      console.log(res.list);
+      this.setData({
+        lm_shopList : res.list
+      })
+    });
+  },
+
+
+  myTab: function (m) {
     // var e = this, i = a.pdata(t).cate;
     // e.setData({ cate: i, page: 1, list: [] }),
     //   e.getList()
-
-    var e = this, i = a.pdata(t).cate;
-    e.setData({ cate: i});
+    var status = t.getCache("gysdl");
+    console.log(status);
+    var e = this, i = a.pdata(m).cate;
+    if (i == "shop"){
+      if (status){
+        e.setData({ cate: 'shop111' });
+      }
+    }else{
+      e.setData({ cate: i });
+    }
   },
   getList: function () {
     var t = this;
@@ -331,6 +364,48 @@ Page({
 
     } 
   },
+
+  denglu : function(){
+    if(!this.data.zhanghao){
+      wx.showToast({
+        title: '请输入登录账户',
+        icon: 'none'
+      })
+    }else if(!this.data.upwd){
+      wx.showToast({
+        title: '请输入密码',
+        icon : 'none'
+      })
+    }else{
+      wx.showLoading({
+        title: '登录ing~',
+      })
+      a.get('/supplier/login',{
+        account : this.data.zhanghao,
+        password: this.data.upwd
+      },res=>{
+        wx.hideLoading();
+        console.log(res);
+        if(res.error==0){
+          wx.showToast({
+            title: res.message,
+          })
+          this.setData({
+            cate: 'shop111'
+          });
+          t.setCache('gysdl',true);
+        }else{
+          wx.showToast({
+            title: res.message,
+          })
+        }
+        
+      })
+
+    }
+  },
+
+
 
   //我有好货
   nameChange:function(t){

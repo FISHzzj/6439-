@@ -24,7 +24,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.2.5",
 	"appid": "wx3dca875b6c2bf873",
-	"projectname": "6439%E6%95%B4%E5%90%88%E7%89%88",
+	"projectname": "6439-github",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 44,
+			"current": 47,
 			"list": [
 				{
 					"id": -1,
@@ -339,6 +339,27 @@
 					"name": "产品详情（拼团）",
 					"pathName": "pages/shouye/pintuan/pintuan",
 					"query": "id=28",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供应商商品",
+					"pathName": "pages/member/supplier/supplyGoods/supplyGoods",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 46,
+					"name": "拼团成功",
+					"pathName": "pages/shouye/pintuan/pt_success/pt_success",
+					"query": "teamid=11",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团订单",
+					"pathName": "pages/shouye/pintuan/ptOrderList/ptOrderList",
+					"query": "",
 					"scene": null
 				}
 			]

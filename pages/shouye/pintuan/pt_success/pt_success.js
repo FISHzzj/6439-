@@ -7,7 +7,8 @@ Page({
    */
   data: {
     teamid : '',
-    info : ''
+    info : '',
+    allPrice : ''
   },
 
   /**
@@ -32,7 +33,8 @@ Page({
       wx.hideLoading();
       console.log(res.result);
       this.setData({
-        info : res.result
+        info : res.result,
+        allPrice: Number(res.result.myorder.realprice) + Number(res.result.myorder.freight)
       })
     });
   },
@@ -41,6 +43,19 @@ Page({
     console.log(e.detail.path)
     console.log(e.detail.query)
   },  
+
+
+  copyBtn: function (e) {
+    var that = this;
+    wx.setClipboardData({
+      data: that.data.info.myorder.orderno,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -88,6 +103,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return {
+      title: '转发',
+      path: '/pages/member/fenxiang/index',
+      success: function (res) { }
+    }
 
+  },
+
+
+  refund : function(){
+    var teamid = this.data.teamid;
+    var orderid = this.data.info.myorder.id;
+    wx.navigateTo({
+      url: '/pages/groups/refund/index?teamid='+teamid + '&orderid=' + orderid,
+    })
   }
 })
