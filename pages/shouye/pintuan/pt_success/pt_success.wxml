@@ -2,7 +2,7 @@
 <view class="bg_red flex " style="color:#fff;padding:40rpx 20rpx 60rpx">
   <view style="flex:2">
     <view class="font18">团购拼团成功</view>
-    <view class="font16">等待卖家发货</view>
+    <view class="font16">{{status}}</view>
   </view>
   <view style="flex:1">
     <view style="width:140rpx;height:90rpx">
@@ -95,21 +95,42 @@
       <view wx:else>支付方式： 微信支付</view>
       <!-- <view class="font14" style="color:red;border:2rpx solid #888;padding:0 8rpx">复制</view> -->
     </view>
-    <view class="flex flex-jcsb" style="margin-top:10rpx">
+    <!-- <view class="flex flex-jcsb" style="margin-top:10rpx">
       <view>商品快照： 核对交易细节时，可作为判断依据</view>
       <view class="font14" style="color:red;border:2rpx solid #888;padding:0 8rpx;border-radius:8rpx">查看</view>
-    </view>
+    </view> -->
     <view class="flex flex-jcsb" style="margin-top:10rpx">
       <view>下单时间： {{info.lasttime2}}</view>
       <!-- <view class="font14" style="color:red;border:2rpx solid #888;padding:0 8rpx">复制</view> -->
     </view>
   </view>
 
-  <view class="flex flex-jcfe" style="margin:60rpx 0 100rpx">
-    <view bindtap="refund" class="font14" style="border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx">申请退款</view>
-    <button open-type="share" class="font14" style="border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx;line-height:1.3">立即分享</button>
-    <view class="font14" style="border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx">查看物流</view>
-    <view class="font14" style="border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx">催发货</view>
-    <view class="font14 bg_red" style="border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;color:#fff">再次购买</view>
+  <view class="" style="margin:60rpx 0 100rpx;overflow:hidden;text-align:center">
+    <view bindtap="refund" 
+          class="font14"
+          style="float:right;width:20%;border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx">
+          申请退款
+    </view>
+    <button open-type="share" 
+            class="font14" 
+            style="float:right;width:20%;border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx;line-height:1.3">
+            立即分享
+    </button>
+    <view class="font14" 
+          style="float:right;width:20%;border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx"
+          bindtap="express"
+          wx:if="{{logistics == true}}">
+          查看物流
+    </view>
+    <view class="font14" 
+          style="float:right;width:20%;border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;margin-right:10rpx"
+          wx:if="{{urge == true}}"
+          bindtap="urge">
+          催发货
+    </view>
+    <view class="font14 bg_red" 
+          style="float:right;width:20%;border-radius:8rpx;padding:6rpx 10rpx;border:2rpx solid #ccc;color:#fff;margin-right:10rpx">
+          再次购买
+    </view>
   </view>
 </view>

@@ -2,10 +2,10 @@
 <view class="font16 flex" style="border-bottom:2rpx solid red">
   <view data-index="0" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==0? 'flex flex-c active' : 'flex flex-c'}}">进行中</view>
   <view data-index="1" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==1? 'flex flex-c active' : 'flex flex-c'}}">成功</view>
-  <view data-index="2" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==2? 'flex flex-c active' : 'flex flex-c'}}">失败</view>
-  <view data-index="3" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==3? 'flex flex-c active' : 'flex flex-c'}}">申诉</view>
+  <view data-index="-1" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==-1? 'flex flex-c active' : 'flex flex-c'}}">失败</view>
+  <view data-index="-2" bindtap="tab" style="flex:1;padding: 20rpx 0" class="{{index==-2? 'flex flex-c active' : 'flex flex-c'}}">单买</view>
 </view>
-<view class="p10 font16" style="border-bottom:2rpx dashed red" wx:for="{{list}}" wx:key="{{index}}">
+<view bindtap="gotoOrder" data-orderid="{{item.id}}" data-teamid="{{item.teamid}}" class="p10 font16" style="border-bottom:2rpx dashed red" wx:for="{{list}}" wx:key="{{index}}">
   <view class="flex" style="margin-top:10rpx;">
     <!-- 图片 -->
     <image src="{{item.thumb}}" style="width;120rpx;heigth:120rpx;border:2rpx solid red;margin-right:20rpx"></image>
@@ -22,7 +22,7 @@
     </view>
   </view>
   <view class="flex flex-jcsb">
-    <view style="color:#888">进行中</view>
+    <view style="color:#888">{{item.statusData}}</view>
     <view class="font18" style="color:red">实付:￥{{item.realprice}}</view>
   </view>
 </view>

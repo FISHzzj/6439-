@@ -1,45 +1,47 @@
-// pages/shouye/pintuan/pt_success/pt_success.js
+// pages/shouye/pintuan/alone_order/alone_order.js
 var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-    teamid : '',
+  data: { 
+    orderid : '',
     info : '',
     allPrice : '',
-    status : '',
-
-    logistics: '',
-    urge : ''
+    status: '',
+    logistics:'',
+    urge:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.teamid);
     this.setData({
-      teamid : options.teamid
+      orderid : options.orderid
     });
-    this.getinfo();
-  },
+    this.getInfo();
 
-  getinfo : function(){
+  },  
+
+
+  getInfo: function(){
     wx.showLoading({
       title: '加载中',
-      icon: 'loading'
     })
-    e.get('/groups/team/detail',{
-      teamid : this.data.teamid
+    e.get('/groups/orders/detail',{
+      orderid : this.data.orderid
     },res=>{
       wx.hideLoading();
       console.log(res);
+      //计算总价
+      var _allPrice = Number(res.result.order.freight) + Number(res.result.order.realprice);
       var _status,
-          _logistics,
-          _urge;
-      switch (res.result.myorder.status) {
+        _logistics,
+        _urge;
+      switch(res.result.order.status){
+        case '-1' :
         case '-1':
           _status = '已取消';
           _logistics = false;
@@ -66,29 +68,17 @@ Page({
           _urge = false;
           break;
       }
-
-
-
       this.setData({
         info : res.result,
-        allPrice: Number(res.result.myorder.realprice) + Number(res.result.myorder.freight),
-        status: _status,
+        allPrice : _allPrice,
+        status : _status,
         logistics: _logistics,
-        urge : _urge
-      })
+        urge: _urge
+      });
     });
-  },
 
-  handleContact : function(e){
-    console.log(e.detail.path)
-    console.log(e.detail.query)
-  },  
-
-  express:function(){
-    wx.navigateTo({
-      url: '/pages/groups/orders/express?id=' + this.data.info.myorder.id + '&expresscom=' + this.data.info.myorder.expresscom + '&expresssn=' + this.data.info.myorder.expresssn
-    })
   },
+  
 
   copyBtn: function (e) {
     var that = this;
@@ -100,6 +90,39 @@ Page({
         });
       }
     });
+  },
+
+
+  urge: function () {
+    e.post('/groups/orders/urge_delivery', {
+      orderid: this.data.orderid
+    }, res => {
+      console.log(res);
+      wx.showToast({
+        title: res.result.message,
+      })
+    });
+  },
+
+  express:function(){
+    wx.navigateTo({
+      url: '/pages/groups/orders/express?id=' + this.data.info.order.id + '&expresscom=' + this.data.info.order.expresscom + '&expresssn=' + this.data.info.order.expresssn
+    })
+  },
+
+
+  again : function(){
+    wx.navigateTo({
+      url: '/pages/shouye/pintuan/pintuan?id='+ this.data.info.good.id,
+    })
+  },
+
+  refund: function () {
+    var teamid = this.data.teamid;
+    var orderid = this.data.info.order.id;
+    wx.navigateTo({
+      url: '/pages/groups/refund/index?teamid=' + teamid + '&orderid=' + orderid,
+    })
   },
 
   /**
@@ -148,31 +171,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return {
-      title: '转发',
-      path: '/pages/member/fenxiang/index',
-      success: function (res) { }
-    }
 
-  },
-
-
-  refund : function(){
-    var teamid = this.data.teamid;
-    var orderid = this.data.info.myorder.id;
-    wx.navigateTo({
-      url: '/pages/groups/refund/index?teamid='+teamid + '&orderid=' + orderid,
-    })
-  },
-
-  urge : function(){
-    e.post('/groups/orders/urge_delivery',{
-      orderid: this.data.info.myorder.id
-    },res=>{
-      console.log(res);
-      wx.showToast({
-        title: res.result.message,
-      })
-    });
   }
 })
