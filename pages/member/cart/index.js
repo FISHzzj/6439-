@@ -110,7 +110,7 @@ Page({
         });
         break;
       case "pay":
-        this.data.total > 0 && wx.navigateTo({
+        wx.navigateTo({
           url: "/pages/order/create/index"
         })
     }

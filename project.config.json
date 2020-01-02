@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 47,
+			"current": 52,
 			"list": [
 				{
 					"id": -1,
@@ -360,6 +360,48 @@
 					"name": "拼团订单",
 					"pathName": "pages/shouye/pintuan/ptOrderList/ptOrderList",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "免费街",
+					"pathName": "pages/shouye/gratis_jie/gratis_jie",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "红包兑换商品详情",
+					"pathName": "pages/shouye/gratis_jie/shopInfo/shopInfo",
+					"query": "id=69",
+					"scene": null
+				},
+				{
+					"id": 50,
+					"name": "0元秒杀砍价商品",
+					"pathName": "pages/shouye/gratis_jie/bargain/bargain",
+					"query": "id=67",
+					"scene": null
+				},
+				{
+					"id": 51,
+					"name": "pages/goods/detail/index",
+					"pathName": "pages/goods/detail/index",
+					"query": "id=799",
+					"scene": null
+				},
+				{
+					"id": 52,
+					"name": "邀请砍价",
+					"pathName": "pages/shouye/gratis_jie/bargain/bargainOrder/bargainOrder",
+					"query": "id=374",
+					"scene": null
+				},
+				{
+					"id": 53,
+					"name": "帮人砍",
+					"pathName": "pages/shouye/gratis_jie/bargain/helpBargain/helpBargain",
+					"query": "id=356&shopid=67",
 					"scene": null
 				}
 			]

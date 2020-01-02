@@ -1,45 +1,19 @@
-// pages/shouye/gratis_jie/free/free.js
-var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
+// pages/shouye/gratis_jie/free/freeOrder/freeOrder.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id : '',
-    info : ''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      id : options.id
-    });
-    this.getinfo();
+
   },
-
-  goto:function(){
-    wx.navigateTo({
-      url: '/pages/shouye/gratis_jie/free/freeOrder/freeOrder',
-    })
-  },
-  getinfo(){
-    wx.showLoading();
-    e.get('/take/detail',{
-      goodid : this.data.id,
-
-    },res=>{
-      wx.hideLoading();
-      console.log(res);
-      this.setData({
-        info : res.good
-      })
-    })
-  },
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

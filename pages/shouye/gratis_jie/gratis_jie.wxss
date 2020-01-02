@@ -2,6 +2,12 @@
 .w100{
   width: 100%;
 }
+.p10{
+  padding: 20rpx;
+}
+.font16{
+  font-size: 32rpx;
+}
 .flex{
   display: flex;
 }
@@ -164,4 +170,13 @@
 }
 .bg_yellow{
   background: rgb(249,255,1);
+}
+
+.font14{
+  font-size: 28rpx;
+}
+
+.tab_active{
+  background: red !important;
+  color: #fcff00;
 }

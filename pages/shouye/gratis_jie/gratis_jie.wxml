@@ -1,3 +1,4 @@
+<scroll-view style="height:{{windowHeight}}px" scroll-y="{{true}}" bindscrolltolower="loadMore">
 <view class="hade_img">
   <image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/toux.png"></image>
   <text>免费街</text>
@@ -13,36 +14,43 @@
 <!-- 红包兑换 -->
 <block wx:if="{{coupon==0}}">
   <view class="goods_ul"  style="background-image: url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing.png);">
-    <navigator url="/pages/shouye/gratis_jie/shopInfo/shopInfo">
-      <view  class="goods_li flex flex-jcsb flex-center-align">
-        <image class="goods_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png"></image>
-        <view class="right_view flex flex-col">
-          <text class="color_red">原价￥：25元</text>
-          <text>某某某商品</text>
-          <view class="color_red exchange_btn">12元红包兑换</view>
-        </view>
+    <view style="margin-bottom:20rpx">
+      <view class="flex flex-c font14" style="">
+        <view style="background:#fff;border-radius: 40rpx 0 0 40rpx; padding:8rpx 20rpx; border:2rpx solid red;margin-right:4rpx"
+        data-tabIndex = "0"
+        bindtap="tab_switch"
+              class="{{idx_switch == 0? 'tab_active' : ''}}">商品</view>
+        <view style="background:#fff;border-radius: 0 40rpx 40rpx 0; padding:8rpx 20rpx; border:2rpx solid red"
+        data-tabIndex = "1"
+        bindtap="tab_switch"
+              class="{{idx_switch == 1? 'tab_active' : ''}}">记录</view>
       </view>
-    </navigator>
-    <navigator url="">
-      <view  class="goods_li flex flex-jcsb flex-center-align">
-        <image class="goods_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png"></image>
-        <view class="right_view flex flex-col">
-          <text class="color_red">原价￥：25元</text>
-          <text>某某某商品</text>
-          <view class="color_red exchange_btn">12元红包兑换</view>
+    </view>
+    <block wx:if="{{exchangeflag}}">
+      <navigator wx:for="{{exchangeList}}" wx:key="{{index}}" url="/pages/shouye/gratis_jie/shopInfo/shopInfo?id={{item.id}}">
+        <view  class="goods_li flex flex-jcsb flex-center-align">
+          <image class="goods_img" src="{{item.thumb}}"></image>
+          <view class="right_view flex flex-col">
+            <text class="color_red">原价￥：{{item.price}}元</text>
+            <text>{{item.title}}</text>
+            <view class="color_red exchange_btn">{{item.credit}}元红包兑换</view>
+          </view>
         </view>
+      </navigator>
+    </block>
+    <block wx:if="{{!exchangeflag}}">
+      <view wx:for="{{exchangeRecord}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
+        <image src="{{item.thumb}}" style="width:100rpx;height:100rpx"></image>
+         <view style="flex:1;margin-left:10rpx">
+          <view>{{item.title}}</view>
+          <view class="font14">兑换积分: ￥{{item.money}}</view>
+         </view>
+         <view style="flex:1">
+          <view>兑换时间</view>
+          <view class="font14">{{item.createtime}}</view>
+         </view>     
       </view>
-    </navigator>
-    <navigator url="">
-      <view  class="goods_li flex flex-jcsb flex-center-align">
-        <image class="goods_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png"></image>
-        <view class="right_view flex flex-col">
-          <text class="color_red">原价￥：25元</text>
-          <text>某某某商品</text>
-          <view class="color_red exchange_btn">12元红包兑换</view>
-        </view>
-      </view>
-    </navigator>
+    </block>
     <view class="til_box flex flex-col">
       <text>团优优.健康消费平台</text>
       <text>我们承诺：如果您购买的水果出现坏果烂果，平台根据情况进行退款换果</text>
@@ -153,16 +161,46 @@
 <!-- 零元秒杀 -->
 <block wx:if="{{coupon==2}}">
   <view class="goods_ul" style="background-image: url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing.png);">
-    <navigator url="/pages/shouye/gratis_jie/bargain/bargain" wx:for="{{3}}" wx:key="{{index}}">  
-      <view class="goods_li flex flex-jcsb flex-center-align">
-        <image class="goods_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png"></image>
-        <view class="right_view flex flex-col">
-          <text class="color_red">原价￥：25元</text>
-          <text>某某某商品</text>
-          <view class="color_red exchange_btn">去团杀</view>
-        </view>
+    
+    <view style="margin-bottom:20rpx">
+      <view class="flex flex-c font14" style="">
+        <view style="background:#fff;border-radius: 40rpx 0 0 40rpx; padding:8rpx 20rpx; border:2rpx solid red;margin-right:4rpx"
+        data-tabIndex = "0"
+        bindtap="tab_switch_lyms"
+              class="{{idx_switch_lyms == 0? 'tab_active' : ''}}">商品</view>
+        <view style="background:#fff;border-radius: 0 40rpx 40rpx 0; padding:8rpx 20rpx; border:2rpx solid red"
+        data-tabIndex = "1"
+        bindtap="tab_switch_lyms"
+              class="{{idx_switch_lyms == 1? 'tab_active' : ''}}">记录</view>
       </view>
-    </navigator>
+    </view>
+    <block wx:if="{{lymsFlag}}">
+      <navigator url="/pages/shouye/gratis_jie/bargain/bargain" wx:for="{{lymsList}}" wx:key="{{index}}">  
+        <view class="goods_li flex flex-jcsb flex-center-align">
+          <image class="goods_img" src="{{item.images}}"></image>
+          <view class="right_view flex flex-col">
+            <text class="color_red">原价￥：{{item.start_price}}元</text>
+            <text>{{item.title}}</text>
+            <navigator url="/pages/shouye/gratis_jie/bargain/bargain?id={{item.id}}">  
+              <view class="color_red exchange_btn" >去团杀</view>  
+            </navigator>
+          </view>
+        </view>
+      </navigator>
+    </block>
+    <block wx:if="{{!lymsFlag}}">
+      <view wx:for="{{lymsRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
+        <image src="{{item.images}}" style="width:100rpx;height:100rpx"></image>
+          <view style="flex:1;margin-left:10rpx">
+            <view>{{item.title}}</view>
+            <view class="font14">当前价格: ￥{{item.now_price}}</view>
+          </view>
+          <view style="flex:1">
+            <view>结束时间</view>
+            <view class="font14">{{item.end_time}}</view>
+          </view>     
+        </view>
+    </block>
     
     <view class="til_box flex flex-col">
       <text>团优优.健康消费平台</text>
@@ -174,7 +212,44 @@
 <!-- 一带一免单 -->
 <block wx:if="{{coupon==3}}">
 <view class="goods_ul"  style="background-image: url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing.png);">
-  <navigator url="/pages/shouye/gratis_jie/free/free">
+    <view style="margin-bottom:20rpx">
+      <view class="flex flex-c font14" style="">
+        <view style="background:#fff;border-radius: 40rpx 0 0 40rpx; padding:8rpx 20rpx; border:2rpx solid red;margin-right:4rpx"
+        data-tabIndex = "0"
+        bindtap="tab_switch_yde"
+              class="{{idx_switch_yde == 0? 'tab_active' : ''}}">商品</view>
+        <view style="background:#fff;border-radius: 0 40rpx 40rpx 0; padding:8rpx 20rpx; border:2rpx solid red"
+        data-tabIndex = "1"
+        bindtap="tab_switch_yde"
+              class="{{idx_switch_yde == 1? 'tab_active' : ''}}">记录</view>
+      </view>
+    </view>
+    <block wx:if="{{ydeFlag}}">
+      <navigator wx:for="{{ydeList}}" :key="{{index}}" url="/pages/shouye/gratis_jie/free/free?id={{item.id}}">
+        <view class="goods_li flex flex-jcsb flex-center-align">
+          <image class="goods_img" :src="item.thumb"></image>
+          <view class="right_view flex flex-col">
+            <text class="color_red">原价￥：{{item.marketprice}}元</text>
+            <text>{{item.title}}</text>
+            <view class="color_red exchange_btn">我要免单 购</view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+    <block wx:if="{{!ydeFlag}}">
+      <view wx:for="{{ydeRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
+        <image src="{{item.thumb}}" style="width:100rpx;height:100rpx"></image>
+        <view style="flex:1;margin-left:10rpx">
+          <view>{{item.title}}</view>
+          <view class="font14">当前价格: ￥{{item.price}}</view>
+        </view>
+        <view style="flex:1">
+          <view>发起时间</view>
+          <view class="font14">{{item.createtime}}</view>
+        </view>     
+      </view>
+    </block>
+  <!-- <navigator url="/pages/shouye/gratis_jie/free/free">
     <view class="goods_li flex flex-jcsb flex-center-align">
       <image class="goods_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png"></image>
       <view class="right_view flex flex-col">
@@ -183,7 +258,7 @@
         <view class="color_red exchange_btn">我要免单 购</view>
       </view>
     </view>
-  </navigator>
+  </navigator> -->
   <view class="til_box flex flex-col">
     <text>团优优.健康消费平台</text>
     <text>我们承诺：如果您购买的水果出现坏果烂果，平台根据情况进行退款换果</text>
@@ -191,6 +266,7 @@
   </view>
 </view>
 </block>
+</scroll-view>
 
 
 

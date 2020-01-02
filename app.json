@@ -72,7 +72,11 @@
     "pages/shouye/pintuan/pt_more/pt_more",
     "pages/member/supplier/supplyGoods/supplyGoods",
     "pages/groups/refund/index",
-    "pages/shouye/pintuan/ptOrderList/ptOrderList"
+    "pages/shouye/pintuan/ptOrderList/ptOrderList",
+    "pages/shouye/pintuan/alone_order/alone_order",
+    "pages/shouye/gratis_jie/bargain/bargainOrder/bargainOrder",
+    "pages/shouye/gratis_jie/bargain/helpBargain/helpBargain",
+    "pages/shouye/gratis_jie/free/freeOrder/freeOrder"
   ],
   "global": {
     "window": {

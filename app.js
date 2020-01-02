@@ -100,6 +100,7 @@ App({
 		i = "",
 		n = "",
 		a = this.getCache("usermid");
+    console.log(e.scene);
 		if (e.scene){
       var scene = decodeURIComponent(e.scene);
       var qstring = [];

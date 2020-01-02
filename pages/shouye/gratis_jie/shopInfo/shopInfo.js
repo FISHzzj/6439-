@@ -1,29 +1,119 @@
 // pages/shouye/gratis_jie/shopInfo/shopInfo.js
+var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    background: ['http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png', 'http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png', 'http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/beijing1.png'],
+    id: '',
+    background: [],
     indicatorDots: true,
     vertical: false,
     autoplay: true,
     interval: 2000,
-    duration: 500
+    duration: 500,
+    info : '',
+    type: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    this.setData({
+      id : options.id
+    });
+    this.getShopList();
+  },
+  goCart:function(){
+    // wx.navigateTo({
+    //   url: '/pages/shouye/gratis_jie/order/order',
+    //   // url: '/pages/member/cart/index'
+    // })
+    if(!this.data.type){
+      wx.showToast({
+        title: '请选择抵扣方式',
+        icon: 'none',
+        duration:2000
+      })
+    }else{
+      wx.showLoading();
+      e.post('/creditshop/create/exchange',{
+        goodsid : this.data.info.goods.id
+      },res=>{
+        wx.hideLoading();
+        console.log(res);
+        if(res.status == 1){
+          wx.showToast({
+            title: res.result.message,
+            duration: 3500,
+            success : function(){
+              wx.switchTab({
+                url: '/pages/member/cart/index',
+                success: function () {
 
+                },
+                fail: function (i) {
+                  console.log(i)
+                }
+              })
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: res.result.message,
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      });
+     
+
+    }
   },
-  goOeder:function(){
-    wx.navigateTo({
-      url: '/pages/shouye/gratis_jie/order/order',
+
+  getShopList : function(){
+    wx.showLoading({
+      title: '加载中',
     })
+    e.get('/creditshop/detail',{
+      id : this.data.id
+    },res=>{
+      wx.hideLoading();
+      console.log(res);
+      res.result.log.forEach(item=>{
+        item.starttime = item.createtime_str
+      })
+      this.setData({
+        info : res.result
+      });
+    });
   },
+
+  check :function(e){
+    console.log(e);
+    this.setData({
+      type: e.currentTarget.dataset.type
+    });
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -236,12 +236,9 @@ Page({
       e.get("goods/get_detail", {
         id: t.id
       }, function(t) {
-        // var s
-        // if (t.goods.content_type == 1) {
-        //   s = getApp().requirejs("wxParse/wxParse"),
-        //     setTimeout(function (q) { s.wxParse("wxParseData", "html", t.goods.content, a, "5") }, 1)
-        // }
+        console.log(t);
         if (
+
           setTimeout(function(q) {
             s.wxParse("wxParseData", "html", t.goods.content, a, "5")
           }, 1),
@@ -249,13 +246,22 @@ Page({
             show: !0,
             goods: t.goods,
             goodsg: t.g
-          }), wx.setNavigationBarTitle({
+          }), 
+          wx.setNavigationBarTitle({
             title: t.goods.title || "商品详情"
-          }), n = t.goods.hasoption, i.isEmptyObject(t.goods.dispatchprice) || "string" == typeof t.goods.dispatchprice ? a.setData({
+          }), 
+          n = t.goods.hasoption, 
+          i.isEmptyObject(t.goods.dispatchprice) || "string" == typeof t.goods.dispatchprice ? 
+          a.setData({
             dispatchpriceObj: 0
-          }) : a.setData({
+          }) 
+          : 
+          a.setData({
             dispatchpriceObj: 1
-          }), t.goods.isdiscount > 0 && t.goods.isdiscount_time >= o) {
+          }), t.goods.isdiscount > 0 && t.goods.isdiscount_time >= o
+          
+
+          ) {
           clearInterval(a.data.timer);
           var r = setInterval(function() {
             a.countDown(0, t.goods.isdiscount_time)
