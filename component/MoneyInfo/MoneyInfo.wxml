@@ -9,7 +9,7 @@
   <view style="flex:1" class="font14 text-c">
     <!-- <view>25元红包兑品</view> -->
     <view>￥{{money}}</view>
-    <view>￥{{freight}}</view>
+    <view wx:if="{{}}">￥{{freight}}</view>
     <view class="font16" style="font-weight:600">合计：￥{{money + freight}}</view>
   </view>
 </view>

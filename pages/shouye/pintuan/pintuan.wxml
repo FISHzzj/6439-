@@ -69,37 +69,37 @@
 <view class="cover_screen" wx:if="{{showModalStatus}}" catchtouchmove='ture'></view>
 <!-- 弹窗 -->
 <view animation="{{animationData}}" class="buy_box" wx:if="{{showModalStatus}}">
-    <view class="optinsBox flex" style="">
-      <view class="imgBox">
-        <image src="" style="width:100%;height:100%"></image>
-      </view>
-      <view style="flex:1">
-        <view class="" style="margin-left:180rpx;padding: 0 0 0 10rpx">
-          <view class="flex" style="justify-content: space-between;">
-            <text style="color:red">￥{{price}}</text>
-            <text bindtap="hideBuyModal" style="padding:4rpx 8rpx">X</text>
-          </view>
-          <view class="font14">{{goodsInfo.goods.title}}</view>
-        </view>
-        <view style="overflow:scroll; margin-bottom:80rpx;margin-top:60rpx">
-          <view wx:for="{{goodsInfo.specs}}" wx:key="{{id}}" class="font16" style="margin-top:20rpx">
-            <view style="color:#888">{{item.title}}</view>
-            <view class="flex flex-warp flex-jcfs font14">
-              <view data-specs="{{item}}" data-id="{{i.id}}" bindtap="sele" class="shopOption {{i.sele? 'active' : ''}}" wx:for="{{item.items}}" wx:key="{{index}}" wx:for-item="i">{{i.title}}</view>
-            </view>
-          </view>
-          <!-- <view class="font16" style="margin-top:20rpx">
-            <view style="color:#888">重量</view>
-            <view class="flex flex-warp flex-jcsb font14">
-              <view class="shopWeight">2个装（净果4-5斤）实惠</view>
-              <view class="shopWeight">2-4个装（净果6-7斤）实惠</view>
-              <view class="shopWeight">4个装（净果9-10斤）实惠</view>
-            </view>
-          </view> -->
-        </view>
-        <view class="trueBtn" bindtap="optionsPay">确定</view>
-      </view>
+  <view class="optinsBox flex" style="">
+    <view class="imgBox">
+      <image src="" style="width:100%;height:100%"></image>
     </view>
+    <view style="flex:1">
+      <view class="" style="margin-left:180rpx;padding: 0 0 0 10rpx">
+        <view class="flex" style="justify-content: space-between;">
+          <text style="color:red">￥{{price}}</text>
+          <text bindtap="hideBuyModal" style="padding:4rpx 8rpx">X</text>
+        </view>
+        <view class="font14">{{goodsInfo.goods.title}}</view>
+      </view>
+      <view style="overflow:scroll; margin-bottom:80rpx;margin-top:60rpx">
+        <view wx:for="{{goodsInfo.specs}}" wx:key="{{id}}" class="font16" style="margin-top:20rpx">
+          <view style="color:#888">{{item.title}}</view>
+          <view class="flex flex-warp flex-jcfs font14">
+            <view data-specs="{{item}}" data-id="{{i.id}}" bindtap="sele" class="shopOption {{i.sele? 'active' : ''}}" wx:for="{{item.items}}" wx:key="{{index}}" wx:for-item="i">{{i.title}}</view>
+          </view>
+        </view>
+        <!-- <view class="font16" style="margin-top:20rpx">
+          <view style="color:#888">重量</view>
+          <view class="flex flex-warp flex-jcsb font14">
+            <view class="shopWeight">2个装（净果4-5斤）实惠</view>
+            <view class="shopWeight">2-4个装（净果6-7斤）实惠</view>
+            <view class="shopWeight">4个装（净果9-10斤）实惠</view>
+          </view>
+        </view> -->
+      </view>
+      <view class="trueBtn" bindtap="optionsPay">确定</view>
+    </view>
+  </view>
 </view>
 
 </scroll-view>

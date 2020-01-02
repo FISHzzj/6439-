@@ -18,6 +18,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    bindTextAreaBlur:function(e){
+      var myEventDetail = e.detail.value;
+      this.triggerEvent('myevent', myEventDetail)
+    }
   }
 })

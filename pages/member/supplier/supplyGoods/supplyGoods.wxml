@@ -1,54 +1,58 @@
-<!--pages/member/supplier/supplyGoods/supplyGoods.wxml-->
 
-<view class="container">
-    <swiper autoplay="{{true}}" interval="5000" style="height:400rpx;">
-      <block wx:for="{{goods.thumb_url}}" wx:key="{{index}}">
-        <swiper-item>
-          <view class="">
-            <image style="width:100%;height:400rpx" src="{{item}}"></image>
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-</view>
-<view class="flex p10" style="background:rgb(252,255,0);">
-  <view style="flex:1">
-    <text class="font22" style="color:red;padding:20rpx 4rpx;border:4rpx solid red">￥27.5</text>
-    <text class="font14" style="margin-left:10rpx;text-decoration:line-through;color:#888">市场价￥37.9</text>
+<import src="/utils/wxParse/wxParse.wxml" />
+<scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+  <view class="container">
+      <swiper autoplay="{{true}}" interval="5000" style="height:400rpx;">
+        <block wx:for="{{goods.thumbs}}" wx:key="{{index}}">
+          <swiper-item>
+            <view class="">
+              <image style="width:100%;height:400rpx" src="{{item}}"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
   </view>
-  <view style="flex:1;color:red">
-    <text class="font14 flex" style="justify-content: flex-end;align-items:flex-end;height:100%"></text>
-  </view>
-</view>
-<view class="flex p10">
-  <view style="color:#333;flex:3;padding-right:60rpx">
-    <view class="font16">黄金百香果 - 摘果现场直播</view>
-    <view class="font12" style="padding-top:4rpx">健康睡过，良知果农，农民价格，果农到家专区</view>
-    <!-- <view class="font12">果农到家专区</view> -->
-  </view>
-  <view style="flex:1" class="text-c">
-    <view class="font12 text-c" style="border:2rpx solid rgb(250,170,20)">
-      <view>可抵扣</view>
-      <view>红包/VIP</view>
+  <view class="flex p10" style="background:rgb(252,255,0);">
+    <view >
+      <text class="font22" style="color:red;padding:20rpx 4rpx;border:4rpx solid red">￥{{goods.marketprice}}/{{goods.unit}}</text>
+      <text class="font14" style="margin-left:10rpx;text-decoration:line-through;color:#888">原价￥{{goods.productprice}}</text>
     </view>
-    <!-- <text class="font14">坏果包赔</text> -->
+    <view style="flex:1;color:red">
+      <text class="font14 flex" style="justify-content: flex-end;align-items:flex-end;height:100%">拼单，买多少送多少</text>
+    </view>
   </view>
-</view>
+  <view class="flex p10">
+    <view style="color:#333;flex:3;padding-right:60rpx">
+      <view class="font16">{{goods.title}}</view>
+      <view class="font12" style="padding-top:4rpx">健康水果，良知果农，农名价格，果农到家专区</view>
+      <!-- <view class="font12">果农到家专区</view> -->
+    </view>
+    <view wx:if="{{goods.isdeduct=='1'}}" style="flex:1" class="text-c">
+      <view class="font12 text-c" style="border:2rpx solid rgb(250,170,20)">
+        <view>可抵扣</view>
+        <view>红包/VIP</view>
+      </view>
+      <!-- <text class="font14">坏果包赔</text> -->
+    </view>
+  </view>
+  <view class='goods-detail-info'>
+    <view class='wxParse'>
+      <template is='wxParse' data='{{ wxParseData:wxParseData.nodes }}' />
+    </view>
+  </view>
 
 
-<view class="payNav flex">
-  <view style="flex:1;border-right:2rpx solid #888"></view>
-  <view style="flex:1;border-right:2rpx solid #888"></view>
-  <view style="flex:1;color:#fff;line-height:110rpx;text-align:center" class="bg_red" bindtap="">立即拼车</view>
-</view>
-
-
-<view class="cover_screen" wx:if="{{showModalStatus}}" catchtouchmove='ture'></view>
-<!-- 弹窗 -->
-<view animation="{{animationData}}" class="buy_box" wx:if="{{showModalStatus}}">
+  <PayNav bind:OnShow = 'OnShow' 
+          singleprice="{{goods.singleprice}}" 
+          credit2_back="{{goods.credit2_back}}"
+          isfavorite="{{goods.isfavorite}}"
+          bind:collection = 'collection'></PayNav>
+  <view class="cover_screen" wx:if="{{showModalStatus}}" catchtouchmove='ture'></view>
+  <!-- 弹窗 -->
+  <view animation="{{animationData}}" class="buy_box" wx:if="{{showModalStatus}}">
     <view class="optinsBox flex" style="">
       <view class="imgBox">
-        <image src="" style="width:100%;height:100%"></image>
+        <image src="{{goodsInfo.goods.thumb}}" style="width:100%;height:100%"></image>
       </view>
       <view style="flex:1">
         <view class="" style="margin-left:180rpx;padding: 0 0 0 10rpx">
@@ -65,16 +69,17 @@
               <view data-specs="{{item}}" data-id="{{i.id}}" bindtap="sele" class="shopOption {{i.sele? 'active' : ''}}" wx:for="{{item.items}}" wx:key="{{index}}" wx:for-item="i">{{i.title}}</view>
             </view>
           </view>
-          <!-- <view class="font16" style="margin-top:20rpx">
-            <view style="color:#888">重量</view>
-            <view class="flex flex-warp flex-jcsb font14">
-              <view class="shopWeight">2个装（净果4-5斤）实惠</view>
-              <view class="shopWeight">2-4个装（净果6-7斤）实惠</view>
-              <view class="shopWeight">4个装（净果9-10斤）实惠</view>
-            </view>
-          </view> -->
         </view>
         <view class="trueBtn" bindtap="optionsPay">确定</view>
       </view>
     </view>
+  </view>
+</scroll-view>
+
+
+
+<view class="payNav flex">
+  <view style="flex:1;color:#fff;line-height:110rpx;text-align:center;border-right:1px solid #eee;" class="bg_red"   bindtap="zhuangouwuche" >立即拼车</view>
+  <view style="flex:1;color:#fff;line-height:110rpx;text-align:center" class="bg_red" bindtap="onShowOption" >继续拼车</view>
 </view>
+

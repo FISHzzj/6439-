@@ -22,7 +22,18 @@ Page({
     pvalOld: [0, 0, 0],
     pval: [0, 0, 0],
     areas: [],
-    noArea: !0
+    noArea: !0,
+    xianshow:true,
+    titleshow:false,
+    index: '',
+    pick_class: '',
+    express_class: '',
+    huo_class: '',
+    isClose: true,
+    address: '',
+    pickAddress: '',
+    huoAddress:''
+
   },
   onLoad: function(t) {
     var i = this,
@@ -55,6 +66,7 @@ Page({
       }else{
         var nowmoney = t.exchangecha - i.data.options.exchangeprice;
       }
+      console.log(t);
         0 == t.error ? (r.each(t.goods, function(t, e) {
           r.each(e.goods, function(t, e) { //cc_zhong 修复同一产品不同规格进购物车后只算一个商品的bug
             d[e.id + '_' + t] = e
@@ -112,6 +124,66 @@ Page({
         "data.couponname": null,
         coupon: null
       }), r.isEmptyObject(i.data.list) || i.caculate(i.data.list))
+
+    var pickAddress, address, huoAddress;
+    console.log(this.data.index);
+    if (this.data.index == 1) {
+      //提货点返回的
+      pickAddress = e.getCache('pickAddress');
+      address = '';
+      huoAddress='';
+    }
+    else if (this.data.index == 0) {
+      //快递地址返回的
+      address = e.getCache("orderAddress");
+      pickAddress = '';
+      huoAddress ='';
+    } else {
+      address = '';
+      pickAddress = '';
+      huoAddress = e.getCache('huoAddress');
+    }
+    var pick_class = pickAddress ? true : false;
+    var express_class = address ? true : false;
+    var huo_class = huoAddress ? true:false
+    this.setData({
+      address: address,
+      pickAddress: pickAddress,
+      huoAddress: huoAddress,
+      pick_class: pick_class,
+      express_class: express_class,
+      huo_class: huo_class
+    })
+  },
+  //选择地址
+  address: function () {
+    this.setData({
+      // pickAddress : '',
+      isClose: false
+    });
+    wx.navigateTo({
+      url: '/pages/member/address/select',
+    })
+  },
+  //提货点
+  pickUpPoint: function () {
+    this.setData({
+      // address: '',
+      isClose: false
+    });
+    wx.navigateTo({
+      url: '/pages/shouye/pick_up_point/pick_up_point',
+    })
+  },
+  // 线下活动点
+  pickUpWang: function () {
+    this.setData({
+      // address: '',
+      isClose: false
+    });
+    wx.navigateTo({
+      url: '/pages/shouye/huo_dong_dian/index',
+    })
   },
   toggle: function(t) {
     var e = a.pdata(t),
@@ -198,7 +270,7 @@ Page({
           dispatchtype: t.data.dispatchtype,
           fromcart: t.list.fromcart,
           carrierid: 1 == t.data.dispatchtype && t.list.carrierInfo ? t.list.carrierInfo.id : 0,
-          addressid: t.list.address ? t.list.address.id : 0,
+          // addressid: t.list.address ? t.list.address.id : 0,
           carriers: 1 == t.data.dispatchtype || t.list.isvirtual || t.list.isverify ? {
               carrier_realname: t.list.member.realname,
               carrier_mobile: t.list.member.mobile,
@@ -210,8 +282,8 @@ Page({
             "",
           bargainid: e.data.bargain,
           remark: t.data.remark,
-          deduct: t.data.deduct,
-          deduct2: t.data.deduct2,
+          deduct: t.data.deduct ? t.data.deduct : t.data.deduct2 ,
+          // deduct2: t.data.deduct2,
           couponid: t.data.couponid,
           invoicename: t.list.invoicename,
           bargain_id: t.list.goods,
@@ -222,14 +294,42 @@ Page({
           exchangeprice: t.options.exchangeprice,
           exchange: exchange
         };
+        // 判断是否同时选择抵扣
+        if (t.data.deduct == 1 && t.data.deduct2==2 ){
+          wx.showToast({
+            title: '不能同时选择两种抵扣方式',
+            icon: 'none',
+            duration: 2000
+          })
+          return
+        }
+
         if (1 == t.data.dispatchtype || t.list.isvirtual || t.list.isverify) {
           if ("" == r.trim(t.list.member.realname))
             return void a.alert("请填写联系人!");
           if ("" == r.trim(t.list.member.mobile))
             return void a.alert("请填写联系方式!");
-          s.addressid = 0
-        } else if (!s.addressid)
-          return void a.alert("地址没有选择!");
+          // s.addressid = 0
+        } else if (!this.data.address && !this.data.pickAddress && !this.data.huoAddress) {
+          wx.showToast({
+            title: '请选择提货方式',
+            icon: 'none',
+            duration: 2000
+          })
+          return
+        } else if (this.data.address) {
+          s.pick_type = 1;
+          s.addressid = this.data.address.id;
+        } else if (this.data.pickAddress) {
+          s.pick_type = 2;
+          s.pick_id = this.data.pickAddress.id;
+        }else{
+          s.pick_type = 3;
+          s.pick_id = this.data.huoAddress.id;
+        }
+        
+        // else if (!s.addressid)
+        //   return void a.alert("地址没有选择!");
         //console.log(s);
         //return void a.alert("ddd!");
         e.setData({
@@ -242,8 +342,7 @@ Page({
                 url: "/pages/order/index"
               })
             })
-          }
-           else if(e.setData({
+          }else if(e.setData({
                 submit: !1
               }), 0 != t.error)
               return void a.alert(t.message);
@@ -257,17 +356,18 @@ Page({
   dataChange: function(t) {
     var e = this.data.data,
       a = this.data.list;
+      console.log(e);
     switch (t.target.id) {
       case "remark":
         e.remark = t.detail.value;
         break;
       case "deduct":
-        e.deduct = t.detail.value,
-          a.realprice += e.deduct ? -a.deductmoney : a.deductmoney;
+        e.deduct = t.detail.value ? '1':0,
+          a.realprice += t.detail.value ? -a.deductmoney : a.deductmoney;
         break;
       case "deduct2":
-        e.deduct2 = t.detail.value,
-          a.realprice += e.deduct2 ? -a.deductcredit2 : a.deductcredit2
+        e.deduct2 = t.detail.value ? '2': 0,
+          a.realprice += t.detail.value ? -a.deductmoney_vip : a.deductmoney_vip
     }
     this.setData({
       data: e,

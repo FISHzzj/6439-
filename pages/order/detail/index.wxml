@@ -251,10 +251,10 @@
     </view>
     <view class='fui-cell-group'>
       <view class='order-info'>
-        <view class='fui-cell-label'>订单编号：<text class='fui-cell-label'>{{order.ordersn}}</text></view>
+        <view class='fui-cell-label'>订单编号：<text class='fui-cell-label'>{{order.ordersn}}</text><text class="fuzhi" bindtap="fuzhhi" data-ordersn="{{order.ordersn}}">复制</text></view>
         <view class='fui-cell-label'>创建时间：<text class='fui-cell-label'>{{order.createtime}}</text></view>
         <block wx:if='{{order.paytime}}'>
-          <view class='fui-cell-label'>支付时间：<text class='fui-cell-label'>{{order.paytime}}</text></view>
+          <view class='fui-cell-label'>下单时间：<text class='fui-cell-label'>{{order.paytime}}</text></view>
         </block>
         <block wx:if='{{order.sendtime}}'>
           <view class='fui-cell-label'>发货时间：<text class='fui-cell-label'>{{order.sendtime}}</text></view>
@@ -269,13 +269,18 @@
     </block>
     <view class='operate'>
       <navigator openType='redirect' url='/pages/order/index' class='btn btn-default'>我的订单</navigator>
-      <navigator openType='switchTab' url='/pages/index/index' class='btn btn-default'>返回首页</navigator>
+      <navigator openType='switchTab' url='/pages/shouye/index/index' class='btn btn-default'>返回首页</navigator>
     </view>
     <view class='fui-footer'>
-        <block wx:if='{{ customer == "1"}}'>
+        <!-- <block wx:if='{{ customer == "1"}}'>
           <button openType='contact' class='btn btn-default btn-default-o pull-left'>
           <image class='icon icon20' src='/static/images/icon/service.png'  lazy-load='true'></image>客服</button>
-        </block>
+        </block> -->
+      <block >
+        <button open-type='share' class='btn btn-default btn-default-o pull-left'>立即分享
+        <!-- <image class='icon icon20' src='/static/images/icon/service.png'  lazy-load='true'></image>客服 -->
+        </button>
+      </block>
       <block wx:if='{{!order.canrestore}}'>
         <block wx:if='{{order.cancancel}}'>
           <view class='btn btn-default btn-default-o'>

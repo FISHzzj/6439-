@@ -766,7 +766,7 @@
             </view>
             <view class='label'>关注</view>
           </view>
-          <block wx:if='{{1 || goods["customer"] != "1"}}'>
+          <!-- <block wx:if='{{1 || goods["customer"] != "1"}}'>
             <navigator wx:if="{{goods['merchid']>0}}" class='nav-item external' url='/pages/changce/merch/detail?id={{goods["merchid"]}}'>
               <view class='icon icon-shop'>
                 <image class='icon20' src='{{icons["store"]}}' lazy-load='true'></image>
@@ -779,7 +779,7 @@
               </view>
               <view class='label'>店铺</view>
             </navigator>
-          </block>
+          </block> -->
 
           <navigator openType='switchTab' url='/pages/member/cart/index' class='nav-item cart-item' id='menucart'>
             <block wx:if='{{goods.cartcount}}'>

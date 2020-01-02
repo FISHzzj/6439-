@@ -119,7 +119,7 @@
             <view class="oy_center_item_title">拼团订单</view>
           </view>
         </navigator>
-        <navigator url="" class="oy_center_item1" hover-class='none'>
+        <navigator url="/pages/member/jinhuo/index" class="oy_center_item1" hover-class='none'>
           <view class="flex flex-col flex-center oy_center_item_main">
             <image style="border-radius:0" mode="aspectFill" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/gong.png" class="oy_item_icon" lazy-load='true'></image>
             <view class="oy_center_item_title">进货订单</view>

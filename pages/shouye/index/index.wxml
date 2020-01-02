@@ -37,13 +37,35 @@
 <view class="limited_box" style="background:url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/tou1.png); background-size: 100% 100%;">
   <text class="limited_text">限时限购</text>
   <view class="limited_ul flex">
-    <view  wx:for="{{btns}}" wx:key="" class="limited_li  flex flex-col {{index==active?'active':''}}" data-index="{{index}}" bindtap="toggle">
-      <text>{{item.time}}</text>
-      <text>{{item.state}}</text>
-    </view>
+    <block wx:for="{{seckill_time}}" wx:key="index"  >
+      <navigator url='/pages/shouye/liebiao/index?seckill_id={{item.id}}' hover-class="none" class="limited_li  flex flex-col {{item.open_status ==1?'active':''}}"  data-index="{{index}}" >
+        <text>{{item.hour}}:00</text>
+        <text >{{item.open_status==0?'已开抢':(item.open_status==1?'进行中':'待开始')}}</text>
+      </navigator>
+    </block>
   </view>
 </view>
-
+<!-- 限时商品 -->
+<view class="goods_ul flex flex-jcsb flex-wrap">
+  <block wx:for="{{seckill_goods}}" wx:for-item="item" wx:key="*this">
+    <navigator url="/pages/goods/detail/index?id={{item.id}}" hover-class="none" class="goods_li">
+      <image class="goods_img" src="{{item.thumb}}"></image>
+      <view class="font_siz30 flex flex-jcsb">
+        <text>{{item.title}}</text>
+        <!-- <text>2斤/件</text> -->
+      </view>
+      <view class="li_tow flex flex-jcsb flex-center-align">
+        <text wx:if="{{item.isdeduct}}==1">可参与抵扣：红包/VIP卡</text>
+        <text wx:else>不可参与抵扣：红包/VIP卡</text>
+        <!-- <view class="share_btn">分享赚钱</view> -->
+      </view>
+      <view class="flex flex-jcsb flex-center-align">
+        <text class="font_siz30 color_red">￥{{item.marketprice}} <text class="font_siz25">原价{{item.productprice }}元</text></text>
+        <view class="team_btn">购买</view>
+      </view>
+    </navigator>
+  </block>
+</view>
 <view class="goods_ul flex flex-jcsb flex-wrap">
   <view class="fruits_tile" style="background-image:url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/tou7.png);">
     <!-- <view>爆款水果</view>
@@ -127,7 +149,6 @@
             </view>
           </view>
         </view>
-
         <view class='fui-navbar'>
           <block>
             <a href='javascript:;' bindtap='emptyActive' class='nav-item btn confirmbtn disabled' style="color:#666666">关 闭</a>

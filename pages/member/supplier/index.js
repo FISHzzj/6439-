@@ -21,17 +21,23 @@ Page({
     haohuoFilePaths:[] ,//产品图片
     haohuovideoFilePaths: [], //产品视频
   },
-  onLoad: function (t) {
-    this.getList();
+  onLoad: function () {
     this.getShopList();
+    var dlcheng = t.getCache('dlcheng');
+    console.log(dlcheng);
+    if (dlcheng==1){
+      this.setData({
+        cate: 'shop111',
+        dlcheng :1
+      });
+    }
   },
 
-  goto : function(){
-    wx:wx.navigateTo({
-      url: '/pages/member/supplier/supplyGoods/supplyGoods',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+  goto:function(t){
+    var e = this, i = a.pdata(t).id;
+    console.log(i)
+    wx.navigateTo({
+      url: '/pages/member/supplier/supplyGoods/supplyGoods?id='+i,
     })
   },
   getShopList : function(){
@@ -58,43 +64,9 @@ Page({
     // console.log(status);
     var e = this, i = a.pdata(m).cate;
     e.setData({ cate: i });
-    // if (i == "shop"){
-    //   if (status){
-    //     e.setData({ cate: 'shop111' });
-    //   }
-    // }else{
-    //   e.setData({ cate: i });
-    // }
-  },
-  getList: function () {
-    var t = this;
-    a.loading(), this.setData({ loading: !0 }),
-      a.get("sale/coupon/my/getlist", { page: this.data.page, cate: this.data.cate }, function (e) {
-        console.log(e);
-        e.list.forEach(function (o) {
-          console.log(o)
-          if (o.couponname == '收银优惠卷') {
-            o.sic = '0';
-            o.imgc = 'blue'
-          } else if (o.couponname == '购物优惠卷') {
-            o.sic = '_j2';
-            o.imgc = 'blue1'
-          } else if (o.couponname == '充值优惠卷') {
-            o.sic = '_c';
-            o.imgc = 'red'
-          }
 
-        })
-        var i = { loading: !1, total: e.total, pagesize: e.pagesize, closecenter: e.closecenter }; e.list.length > 0 && (i.page = t.data.page + 1, i.list = t.data.list.concat(e.list),
-          e.list.length < e.pagesize && (i.loaded = !0)), t.setData(i), a.hideLoading()
-      })
-  }, 
-  onReachBottom: function () {
-    this.data.loaded || this.data.list.length == this.data.total || this.getList()
   },
-  jump: function (t) {
-    var e = a.pdata(t).id; e > 0 && wx.navigateTo({ url: "/pages/sale/coupon/my/detail/index?id=" + e })
-  },
+
   btnclick:function(t){
     var e = this, i = a.pdata(t).btn;
     if (i =="reginer"){
@@ -394,7 +366,7 @@ Page({
           this.setData({
             cate: 'shop111'
           });
-          // t.setCache('gysdl',true);
+          t.setCache('dlcheng',1);
         }else{
           wx.showToast({
             title: res.message,

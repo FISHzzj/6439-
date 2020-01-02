@@ -5,7 +5,7 @@
 .wechat{ background:#04ab02; }
 .car{ background:#0291bf; }
 .credit wx-image,.wechat wx-image,.car wx-image{ width: 60rpx; height:60rpx; }
-.success{ background:#ff9326; margin-top: 0; color: #fff; }
+.success{ background:#FE0000; margin-top: 0; color: #fff; }
 .row{ font-size: 40rpx; }
 .adress{ font-size: 27rpx; color: #666; }
 .operate{ display: -webkit-flex; display: flex; }

@@ -6,10 +6,10 @@ Page({
    */
   data: {
     sort_list: [],
-    btns: [{ "time": "18:00", "state": "已开抢" }, 
-          { "time": "18:00", "state": "已开抢" }, 
-          { "time": "18:00", "state": "已开抢" }, 
-          {"time": "18:00", "state": "已开抢" }],
+    // btns: [{ "time": "18:00", "state": "已开抢" }, 
+    //       { "time": "18:00", "state": "已开抢" }, 
+    //       { "time": "18:00", "state": "已开抢" }, 
+    //       {"time": "18:00", "state": "已开抢" }],
     active: 0,//控制当前显示的div
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
     indicatorDots: true,
@@ -19,13 +19,13 @@ Page({
     duration: 500,
     reward:'',
   },
-  toggle: function (e) {
-    console.log(e)
-    this.setData({
-      //设置active的值为用户点击按钮的索引值
-      active: e.currentTarget.dataset.index,
-    })
-  },
+  // toggle: function (e) {
+  //   console.log(e)
+  //   this.setData({
+  //     //设置active的值为用户点击按钮的索引值
+  //     active: e.currentTarget.dataset.index,
+  //   })
+  // },
   sortlist:function(e){
     console.log(e.currentTarget.dataset.index)
     var index = e.currentTarget.dataset.index;
@@ -55,7 +55,16 @@ Page({
     r.get("shop_index", { }, function (r) {
       console.log(r);
       if(r.error==0){
-        n.setData({ advs: r.advs, goods: r.goods, sort_list: r.navs, group_goods: r.group_goods });
+        n.setData({ 
+          advs: r.advs,
+          goods: r.goods, 
+          sort_list: r.navs, 
+          seckill_time: r.seckill_time,
+          seckill_goods: r.seckill_goods, 
+          group_goods: r.group_goods,
+          goods: r.goods,
+          credit1_list: r.credit1_list
+        });
       }
     })
   },
@@ -149,6 +158,7 @@ Page({
       url: '/pages/shouye/pintuan/pintuan?id=28',
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

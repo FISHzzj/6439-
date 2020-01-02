@@ -79,5 +79,19 @@ Page({
   },
   onShareAppMessage: function () {
     return e.onShareAppMessage()
+  },
+  //复制
+  fuzhhi:function(t){
+    var ordersn = e.pdata(t).ordersn;
+    wx.setClipboardData({
+      data: ordersn,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            // console.log(res.data) // data
+          }
+        })
+      }
+    })
   }
 })

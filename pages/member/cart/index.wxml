@@ -59,7 +59,7 @@
             <radio bindtap='selected' checked='{{val.selected == 1?1:0}}' class='zoom-90' color='#ef4f4f' data-id='{{val.id}}' data-select='{{val.selected}}'></radio>
           </block>
           <block wx:if='{{edit}}'>
-            <radio class='zoom-90' color='#ef4f4f' data-id='{{val.id}}' bindtap='edit_list' checked='{{edit_list.val.id?1:0}}'></radio>
+            <radio class='zoom-90' color='#ef4f4f' data-id='{{val.id}}' bindtap='edit_list' checked='{{edit_list[val.id]?1:0}}'></radio>
           </block>
           <view class='fui-list-media'>
             <image class='round' src='{{val.thumb}}' lazy-load='true'></image>

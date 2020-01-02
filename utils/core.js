@@ -114,7 +114,8 @@ module.exports = {
       success: function(n) {
         e.loading("正在上传...");
         var o = e.getUrl("util/uploader/upload", {
-            file: "file"
+            file: "file",
+            type:"image"
           }),
           i = n.tempFilePaths;
         wx.uploadFile({

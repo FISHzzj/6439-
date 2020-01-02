@@ -2,7 +2,8 @@
   <view class="su_top_image"><image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/fenxiangtoubu.png"></image> </view>
   <view class="su_tab flex flex-wrap flex-center flex-ver ">
     <view bindtap='myTab' class='item item_left {{cate == ""?"active":""}}' data-cate=''>我有好货</view>
-    <view bindtap='myTab' class='item item_right {{cate == "shop" || cate == "shop111"?"active":""}}' data-cate='shop'>联盟商家</view>
+    <view bindtap='myTab' class='item item_right {{cate == "shop"?"active":""}}' data-cate='shop' wx:if="{{!dlcheng}}">联盟商家</view>
+       <view bindtap='myTab' class='item item_right {{cate == "shop111"?"active":""}}' data-cate='shop111' wx:if="{{dlcheng==1}}">联盟商家</view>
     <!-- <view bindtap='myTab' class='item item_right {{cate == "shiti"?"active":""}}' data-cate='shiti'>实体落地</view> -->
   </view>
   <block wx:if='{{cate == ""}}'>
@@ -190,7 +191,7 @@
       </view>
     </block>
   </block>
-  <block wx:if='{{cate == "shop111"}}'> 
+  <block wx:if='{{cate == "shop111" || dlcheng == 1}}'> 
     <view wx:for="{{lm_shopList}}" wx:key="{{index}}" wx:for-item="i">
       <view class="su_center_image flex flex-center">
         <image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/toubu.png"></image>
@@ -201,14 +202,14 @@
           <view>季节热销产品</view>
           <view>这里就是你们后方花园</view>
         </view>
-        <view class="fruits_li" wx:for="{{i.goods}}" wx:key="{{index}}" bindtap="goto">
+        <view class="fruits_li" wx:for="{{i.goods}}" wx:key="{{index}}" bindtap="goto" data-id="{{item.id}}">
           <image class="fruits_img" src="{{item.thumb}}"></image>
           <view class="flex flex-jcsb">
             <view class="su_center_red flex flex-col bagr_red">
               <text>{{item.title}}</text>
               <text wx:if="{{item.isdeduct != 1}}">可抵扣红包/VIP卡</text>
               <text style="text-decoration: line-through;" wx:else>可抵扣红包/VIP卡</text>
-              <text class="font_siz40">￥{{item.productprice}}<text class="through">市场价：{{item.marketprice}}</text></text>
+              <text class="font_siz40">￥{{item.marketprice}}<text class="through">市场价：{{item.productprice}}</text></text>
             </view>
             <view class="btn_box flex flex-col flex-center">
                 <text>{{item.unit}}斤/件</text>
@@ -218,209 +219,6 @@
         </view>
       </view>
     </view>
-    <!-- <image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/shucai.png" class="shucai"></image> -->
-    <!-- 季节热销产品 -->
-    <!-- <view class="fruits_box flex flex-jcsb flex-wrap">
-      <view class="fruits_tile" style="background-image:url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/jijie.png);">
-        <view>季节热销产品</view>
-        <view>这里就是你们后方花园</view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-    </view>
-    <image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/yumi.png" class="shucai"></image> -->
-    <!-- 季节热销产品 -->
-    <!-- <view class="fruits_box flex flex-jcsb flex-wrap">
-      <view class="fruits_tile" style="background-image:url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/zaliang.png);">
-        <view>爆款养生杂粮</view>
-        <view>健康、营养、实惠</view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-    </view> -->
-      <!-- 季节热销产品 -->
-    <!-- <view class="fruits_box flex flex-jcsb flex-wrap">
-      <view class="fruits_tile" style="background-image:url(http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/zaliang.png);">
-        <view>爆款海鲜</view>
-        <view>天然 新鲜 健康 营养</view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-      <view class="fruits_li">
-        <image class="fruits_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/15.png"></image>
-        <view class="flex flex-jcsb">
-          <view class="su_center_red flex flex-col bagr_red">
-            <text>海南橡胶</text>
-            <text>可抵扣红包/VIP卡</text>
-            <text class="font_siz40">￥9.9<text class="through">市场价：19.8</text></text>
-          </view>
-          <view class="btn_box flex flex-col flex-center">
-              <text>2斤/件</text>
-            <button>我要拼团</button>
-            <button>分享赚钱</button>
-          </view>
-        </view>
-      </view>
-    </view> -->
   </block>
   <block wx:if='{{cate == "shiti"}}'>
     <view class="su_center_image flex flex-center">
