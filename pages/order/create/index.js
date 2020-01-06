@@ -33,7 +33,6 @@ Page({
     address: '',
     pickAddress: '',
     huoAddress:''
-
   },
   onLoad: function(t) {
     console.log(t);
@@ -91,6 +90,37 @@ Page({
       e.setCache("coupon", "");
   },
   onShow: function() {
+    //选择地址返回的，接收的参数
+    var pickAddress, address, huoAddress;
+    console.log(this.data.index);
+    if (this.data.index == 1) {
+      //提货点返回的
+      pickAddress = e.getCache('pickAddress');
+      address = '';
+      huoAddress = '';
+    }else if (this.data.index == 0) {
+      //快递地址返回的
+      address = e.getCache("orderAddress");
+      pickAddress = '';
+      huoAddress = '';
+    } else {
+      address = '';
+      pickAddress = '';
+      huoAddress = e.getCache('huoAddress');
+    }
+    var pick_class = pickAddress ? true : false;
+    var express_class = address ? true : false;
+    var huo_class = huoAddress ? true : false
+    this.setData({
+      address: address,
+      pickAddress: pickAddress,
+      huoAddress: huoAddress,
+      pick_class: pick_class,
+      express_class: express_class,
+      huo_class: huo_class
+    })
+
+
     var i = this,
       d = e.getCache("orderAddress"),
       s = e.getCache("orderShop");
@@ -126,35 +156,7 @@ Page({
         coupon: null
       }), r.isEmptyObject(i.data.list) || i.caculate(i.data.list))
 
-    var pickAddress, address, huoAddress;
-    console.log(this.data.index);
-    if (this.data.index == 1) {
-      //提货点返回的
-      pickAddress = e.getCache('pickAddress');
-      address = '';
-      huoAddress='';
-    }
-    else if (this.data.index == 0) {
-      //快递地址返回的
-      address = e.getCache("orderAddress");
-      pickAddress = '';
-      huoAddress ='';
-    } else {
-      address = '';
-      pickAddress = '';
-      huoAddress = e.getCache('huoAddress');
-    }
-    var pick_class = pickAddress ? true : false;
-    var express_class = address ? true : false;
-    var huo_class = huoAddress ? true:false
-    this.setData({
-      address: address,
-      pickAddress: pickAddress,
-      huoAddress: huoAddress,
-      pick_class: pick_class,
-      express_class: express_class,
-      huo_class: huo_class
-    })
+    
   },
   //选择地址
   address: function () {
@@ -230,14 +232,35 @@ Page({
   },
   caculate: function(t) {
     var e = this;
-    a.post("order/create/caculate", {
+    var s = {
       goods: this.data.goodslist,
       dflag: this.data.data.dispatchtype,
+<<<<<<< Updated upstream
       addressid: this.data.list.address ? this.data.list.address.id : 0,
       pick_type:0,
       pick_id:0,
     }, function(a) {
       t.dispatch_price = a.price,
+=======
+      // addressid: this.data.list.address ? this.data.list.address.id : 0
+    };
+    console.log(this.data.address);
+    console.log(this.data.pickAddress);
+    console.log(this.data.huoAddress);
+    if (this.data.address) {
+      s.pick_type = 1;
+      s.addressid = this.data.address.id;
+    } else if (this.data.pickAddress) {
+      s.pick_type = 2;
+      s.pick_id = this.data.pickAddress.id;
+    } else {
+      s.pick_type = 3;
+      s.pick_id = this.data.huoAddress.id;
+    }
+    console.log(s);
+    a.post("order/create/caculate", s, function(a) {
+        t.dispatch_price = a.price,
+>>>>>>> Stashed changes
         t.enoughdeduct = a.deductenough_money,
         t.enoughmoney = a.deductenough_enough,
         t.taskdiscountprice = a.taskdiscountprice,

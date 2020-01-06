@@ -12,14 +12,45 @@ Page({
     this.setData({
       options: e
     }),
-      t.url(e)
+      t.url(e), this.get_list();
   },
   onShow: function () {
-    this.get_list()
+
+    var address;
+    //快递地址返回的
+    address = t.getCache("orderAddress");
+    if (!address) {
+      return
+    }
+    //修改地址 返回来的获取的地址id
+    var orderid = this.data.order.id;
+    if (!orderid){
+      return
+    }
+    e.get('order/order_address', {
+      orderid: orderid,
+      addressid: address.id
+    }, res => {
+      // console.log(res);
+      var title = res.result.message;
+      wx.showToast({
+        title: title,
+        icon: 'success',
+        duration: 2000
+      })
+    })
+
+    var express_class = address ? true : false;
+    this.setData({
+      address: address,
+      express_class: express_class,
+      // show: false
+    })
   },
   get_list: function () {
     var t = this;
     e.get("order/detail", t.data.options, function (i) {
+      // console.log(i);
       0 == i.error ? (i.show = !0, t.setData(i)) : (5e4 != i.error && e.toast(i.message, "loading"), wx.redirectTo({
         url: "pages/order/index"
       }))
@@ -92,6 +123,32 @@ Page({
           }
         })
       }
+    })
+  },
+  //修改地址
+  address:function(){
+    this.setData({
+      // pickAddress : '',
+      isClose: false
+    });
+    wx.navigateTo({
+      url: '/pages/member/address/select',
+    })
+  },
+  //催发货
+  cuifa:function(){
+    //修改地址 返回来的获取的地址id
+    var orderid = this.data.order.id;
+    e.get('order/urge_delivery', {
+      orderid: orderid
+    }, res => {
+      // console.log(res);
+      var title = res.result.message;
+      wx.showToast({
+        title: title,
+        icon: 'success',
+        duration: 2000
+      })
     })
   }
 })

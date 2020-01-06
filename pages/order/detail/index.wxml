@@ -43,6 +43,7 @@
             <view class='text'>{{address.province + address.city + address.area + " " + address.address}}</view>
           </view>
         </navigator>
+        <view class="xiugai" bindtap="address">修改</view>
       </view>
     </block>
     <block wx:if='{{carrier || store}}'>
@@ -277,9 +278,11 @@
           <image class='icon icon20' src='/static/images/icon/service.png'  lazy-load='true'></image>客服</button>
         </block> -->
       <block >
-        <button open-type='share' class='btn btn-default btn-default-o pull-left'>立即分享
+        <button open-type='share' class='btn btn-default btn-default-o pull-left'>立即分享</button>
         <!-- <image class='icon icon20' src='/static/images/icon/service.png'  lazy-load='true'></image>客服 -->
-        </button>
+        <button class='btn btn-default btn-default-o pull-left' bindtap="cuifa">催发货</button>
+        <!-- <image class='icon icon20' src='/static/images/icon/service.png'  lazy-load='true'></image>客服 -->
+
       </block>
       <block wx:if='{{!order.canrestore}}'>
         <block wx:if='{{order.cancancel}}'>
