@@ -4,10 +4,12 @@ Page({
 
   /**
    * 页面的初始数据
+   * 分享者进来判断是否已经登录，take_id先存全局变量或缓存
    */
   data: {
     id : '',
-    info : ''
+    info : '',
+    take_id : '',   //是分享带过来的
   },
 
   /**
@@ -15,15 +17,37 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      id : options.id
+      id : options.id,
+      take_id : options.take_id
     });
+    t.setCache("take_id", {take_id : options.take_id}, 7200),
+
     this.getinfo();
   },
 
   goto:function(){
-    wx.navigateTo({
-      url: '/pages/shouye/gratis_jie/free/freeOrder/freeOrder',
-    })
+    console.log(t.getCache('userinfo'));
+    if (t.getCache('userinfo')){
+      wx.navigateTo({
+        url: '/pages/shouye/gratis_jie/free/freeOrder/freeOrder?goodsid=' + this.data.info.tgid + '&id=' + this.data.id,
+      })
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录授权',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            wx.switchTab({
+              url: '/pages/member/index/index',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
   },
   getinfo(){
     wx.showLoading();

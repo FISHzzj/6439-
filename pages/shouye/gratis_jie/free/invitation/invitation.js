@@ -1,82 +1,48 @@
 // pages/shouye/gratis_jie/free/invitation/invitation.js
-// Page({
-
-//   /**
-//    * 页面的初始数据
-//    */
-//   data: {
-//      showModalStatus: false
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面加载
-//    */
-//   onLoad: function (options) {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面初次渲染完成
-//    */
-//   onReady: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面显示
-//    */
-//   onShow: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面隐藏
-//    */
-//   onHide: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面卸载
-//    */
-//   onUnload: function () {
-
-//   },
-
-//   /**
-//    * 页面相关事件处理函数--监听用户下拉动作
-//    */
-//   onPullDownRefresh: function () {
-
-//   },
-
-//   /**
-//    * 页面上拉触底事件的处理函数
-//    */
-//   onReachBottom: function () {
-
-//   },
-
-//   /**
-//    * 用户点击右上角分享
-//    */
-//   onShareAppMessage: function () {
-
-//   }
-// })
-
-
-
-
+var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
 Page({
   data: {
-    showModalStatus: false
+    showModalStatus: false,
+    take_id : '',
+    info : '',
+    price : '',
+    id : ''
   },
 
   onLoad: function (options) {
-    console.log(options.id)
+    console.log(options)
+    this.setData({
+      take_id: options.take_id,
+      price : options.price,
+      id : options.id
+    })
+    this.getinfo();
   },
-
+  getinfo(){
+    wx.showLoading();
+    var that = this;
+    e.get("/take/records/detail",{
+      take_id: that.data.take_id
+    },res=>{
+      wx.hideLoading();
+      console.log(res);
+      that.setData({
+        info : res
+      })
+    })
+  },
+  
+  onShareAppMessage: function (res) {
+    // console.log(res);
+    return {
+        title: this.info.detail.title,
+        imageUrl: this.info.detail.thumb,
+        path: '/pages/shouye/gratis_jie/free/free?id=' + this.data.id +'take_id=' + this.data.take_id,
+        success: function (res) {
+          console.log(res);
+        }
+    }
+  },
 
   showBuyModal() {
     // 显示遮罩层
@@ -107,7 +73,6 @@ Page({
       this.setData({
         animationData: animation.export()  // export 方法每次调用后会清掉之前的动画操作。
       })
-      console.log(this)
     }, 200)
   },
 

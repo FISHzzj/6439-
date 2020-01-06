@@ -175,7 +175,7 @@
       </view>
     </view>
     <block wx:if="{{lymsFlag}}">
-      <navigator url="/pages/shouye/gratis_jie/bargain/bargain" wx:for="{{lymsList}}" wx:key="{{index}}">  
+      <navigator url="/pages/shouye/gratis_jie/bargain/bargain?id={{item.id}}" wx:for="{{lymsList}}" wx:key="{{index}}">  
         <view class="goods_li flex flex-jcsb flex-center-align">
           <image class="goods_img" src="{{item.images}}"></image>
           <view class="right_view flex flex-col">
@@ -189,7 +189,7 @@
       </navigator>
     </block>
     <block wx:if="{{!lymsFlag}}">
-      <view wx:for="{{lymsRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
+      <view bindtap="viewrecord" data-id="{{item.id}}" data-nowPrice="{{item.now_price}}" wx:for="{{lymsRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
         <image src="{{item.images}}" style="width:100rpx;height:100rpx"></image>
           <view style="flex:1;margin-left:10rpx">
             <view>{{item.title}}</view>
@@ -237,14 +237,16 @@
       </navigator>
     </block>
     <block wx:if="{{!ydeFlag}}">
-      <view wx:for="{{ydeRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
+      <view bindtap="gotoRecord" data-price="{{item.price}}" data-status="{{item.status}}" data-takeId="{{item.id}}" wx:for="{{ydeRecordList}}" wx:key="{{index}}" class="flex p10 font16" style="background:#fff">
         <image src="{{item.thumb}}" style="width:100rpx;height:100rpx"></image>
         <view style="flex:1;margin-left:10rpx">
           <view>{{item.title}}</view>
           <view class="font14">当前价格: ￥{{item.price}}</view>
         </view>
         <view style="flex:1">
-          <view>发起时间</view>
+          <view wx:if="{{item.status==0}}">进行中</view>
+          <view wx:if="{{item.status==1}}">可领取</view>
+          <view wx:if="{{item.status==2}}">已领取</view>
           <view class="font14">{{item.createtime}}</view>
         </view>     
       </view>

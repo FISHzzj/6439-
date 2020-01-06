@@ -73,12 +73,10 @@
     "pages/member/supplier/supplyGoods/supplyGoods",
     "pages/groups/refund/index",
     "pages/shouye/pintuan/ptOrderList/ptOrderList",
-<<<<<<< Updated upstream
     "pages/shouye/pintuan/alone_order/alone_order",
     "pages/shouye/gratis_jie/bargain/bargainOrder/bargainOrder",
     "pages/shouye/gratis_jie/bargain/helpBargain/helpBargain",
-    "pages/shouye/gratis_jie/free/freeOrder/freeOrder"
-=======
+    "pages/shouye/gratis_jie/free/freeOrder/freeOrder",
     "pages/member/supplier/gouwuche/index",
     "pages/member/supplier/suOrder/index",
     "pages/member/supplier/dingdanzhifu/index",
@@ -86,8 +84,8 @@
     "pages/member/jinhuo/index",
     "pages/member/supplier/shenqingtuikuan/index",
     "pages/shouye/liebiao/index",
-    "pages/shouye/huo_dong_dian/index"
->>>>>>> Stashed changes
+    "pages/shouye/huo_dong_dian/index",
+    "pages/shouye/gratis_jie/free/successful/successful"
   ],
   "global": {
     "window": {

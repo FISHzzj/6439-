@@ -36,6 +36,7 @@ Page({
 
   },
   onLoad: function(t) {
+    console.log(t);
     var i = this,
       d = {};
       console.log(t)
@@ -232,7 +233,9 @@ Page({
     a.post("order/create/caculate", {
       goods: this.data.goodslist,
       dflag: this.data.data.dispatchtype,
-      addressid: this.data.list.address ? this.data.list.address.id : 0
+      addressid: this.data.list.address ? this.data.list.address.id : 0,
+      pick_type:0,
+      pick_id:0,
     }, function(a) {
       t.dispatch_price = a.price,
         t.enoughdeduct = a.deductenough_money,

@@ -1,5 +1,5 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
 	},
@@ -25,6 +25,11 @@
 	"libVersion": "2.2.5",
 	"appid": "wx3dca875b6c2bf873",
 	"projectname": "6439-github2",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -41,15 +46,10 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 52,
+			"current": 54,
 			"list": [
 				{
 					"id": -1,
@@ -364,19 +364,13 @@
 				},
 				{
 					"id": -1,
-<<<<<<< Updated upstream
 					"name": "免费街",
 					"pathName": "pages/shouye/gratis_jie/gratis_jie",
-=======
-					"name": "购物车",
-					"pathName": "pages/member/gouwuche/index",
->>>>>>> Stashed changes
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-<<<<<<< Updated upstream
 					"name": "红包兑换商品详情",
 					"pathName": "pages/shouye/gratis_jie/shopInfo/shopInfo",
 					"query": "id=69",
@@ -408,24 +402,13 @@
 					"name": "帮人砍",
 					"pathName": "pages/shouye/gratis_jie/bargain/helpBargain/helpBargain",
 					"query": "id=356&shopid=67",
-=======
-					"name": "联盟商家订单",
-					"pathName": "pages/member/supplier/suOrder/index",
-					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "联盟订单",
-					"pathName": "pages/member/supplier/dingdanzhifu/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "订单详情",
-					"pathName": "pages/member/supplier/xiangqing/index",
->>>>>>> Stashed changes
+					"id": 54,
+					"name": "一带一免支付成功页面",
+					"pathName": "pages/shouye/gratis_jie/free/invitation/invitation",
+					"query": "take_id=0&price=0.01&id=3",
 					"scene": null
 				}
 			]

@@ -387,5 +387,35 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  gotoRecord(e){
+    console.log(e);
+    if (e.currentTarget.dataset.status == "0"){
+      console.log(e.currentTarget.dataset.price);
+      wx.navigateTo({
+        url: '/pages/shouye/gratis_jie/free/invitation/invitation?take_id=' + e.currentTarget.dataset.takeid + '&price=' + e.currentTarget.dataset.price,
+      })
+    } else if (e.currentTarget.dataset.status == 1 || e.currentTarget.dataset.status == 2){
+      console.log(e.currentTarget.dataset.status);
+      wx.navigateTo({
+        url: '/pages/shouye/gratis_jie/free/successful/successful?takeId=' + e.currentTarget.dataset.takeid,
+      })
+    }
+  },
+
+  //0元记录去下一级
+  viewrecord(e){
+    console.log(e.currentTarget.dataset.nowprice);
+    if (e.currentTarget.dataset.nowprice==0){
+      wx.navigateTo({
+        url: '/pages/shouye/gratis_jie/bargain/bargainOrder/bargainOrder?id=' + e.currentTarget.dataset.id,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/shouye/gratis_jie/bargain/bargainOrder/bargainOrder?id=' + e.currentTarget.dataset.id
+      })
+    }
   }
 })

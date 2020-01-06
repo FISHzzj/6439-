@@ -285,7 +285,8 @@ Page({
       icon: 'loading',
     });
     e.post("/groups/goods",
-    { id: that.data.id }, res => {
+    { id: that.data.id }, 
+    res => {
       wx.hideLoading();
       console.log(res.result);
       res.result.team_ing.forEach((item, index) => {
@@ -437,11 +438,11 @@ Page({
     }.bind(this), 200)
   },
 
-  lower : function(){
-    // console.log('爱你哟');
-    // wx.showLoading({
-    //   title: '加载中',
-    //   icon: 'loading',
-    // });
+  loadMore : function(){
+    console.log('爱你哟');
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading',
+    });
   }
 })
