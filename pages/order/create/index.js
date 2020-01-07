@@ -239,7 +239,7 @@ Page({
       pick_type:0,
       pick_id:0,
     }
-    // function(a) {
+    // , function(a) {
     //   t.dispatch_price = a.price,
 
     //   // addressid: this.data.list.address ? this.data.list.address.id : 0
