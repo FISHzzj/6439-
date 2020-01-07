@@ -235,15 +235,15 @@ Page({
     var s = {
       goods: this.data.goodslist,
       dflag: this.data.data.dispatchtype,
-<<<<<<< Updated upstream
       addressid: this.data.list.address ? this.data.list.address.id : 0,
       pick_type:0,
       pick_id:0,
-    }, function(a) {
-      t.dispatch_price = a.price,
-=======
-      // addressid: this.data.list.address ? this.data.list.address.id : 0
-    };
+    }
+    // function(a) {
+    //   t.dispatch_price = a.price,
+
+    //   // addressid: this.data.list.address ? this.data.list.address.id : 0
+    // };
     console.log(this.data.address);
     console.log(this.data.pickAddress);
     console.log(this.data.huoAddress);
@@ -260,7 +260,6 @@ Page({
     console.log(s);
     a.post("order/create/caculate", s, function(a) {
         t.dispatch_price = a.price,
->>>>>>> Stashed changes
         t.enoughdeduct = a.deductenough_money,
         t.enoughmoney = a.deductenough_enough,
         t.taskdiscountprice = a.taskdiscountprice,

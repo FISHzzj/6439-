@@ -364,8 +364,6 @@
 				},
 				{
 					"id": -1,
-					"name": "免费街",
-					"pathName": "pages/shouye/gratis_jie/gratis_jie",
 					"name": "购物车",
 					"pathName": "pages/member/gouwuche/index",
 					"query": "",
@@ -408,9 +406,6 @@
 				},
 				{
 					"id": 54,
-					"name": "一带一免支付成功页面",
-					"pathName": "pages/shouye/gratis_jie/free/invitation/invitation",
-					"query": "take_id=0&price=0.01&id=3",
 					"name": "联盟商家订单",
 					"pathName": "pages/member/supplier/suOrder/index",
 					"query": "",

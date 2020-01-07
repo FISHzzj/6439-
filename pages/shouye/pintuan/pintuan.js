@@ -15,7 +15,7 @@ Page({
     total_team_ing:'',   //拼团列表 多少人在拼团
     timeLeft: "" ,   // 剩下的时间（天时分秒）
     page: 1,
-    list : '',   //购买记录列表
+    list : [],   //购买记录列表
     goodsInfo:'', //商品规格
     attributeList: [],
     shopId : '',  //商品组合规格id
@@ -90,10 +90,18 @@ Page({
       id:that.data.id,
       page: that.data.page
     },res=>{
-      // console.log(res.result.list);
-      that.setData({
-        list : res.result.list
-      })
+      wx.hideLoading();
+      console.log(res.result.list);
+      if (res.result.list.length){
+        var _list = that.data.list.concat(res.result.list);
+        that.setData({
+          list : _list
+        })
+      }else{
+        wx.showToast({
+          title: '没有更多了',
+        })
+      }
     });
   },
 
@@ -444,5 +452,11 @@ Page({
       title: '加载中',
       icon: 'loading',
     });
+    var _page = this.data.page;
+    _page = Number(_page) + 1;
+    this.setData({
+      page : _page
+    })
+    this.getRecord();
   }
 })
