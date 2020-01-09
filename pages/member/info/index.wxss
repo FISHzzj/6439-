@@ -41,3 +41,11 @@ page{
     height:110rpx;
     line-height: 110rpx;
 }
+.oy_btn{
+  background-color: #E31507;
+}
+
+
+
+
+

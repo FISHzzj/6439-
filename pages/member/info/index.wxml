@@ -3,7 +3,7 @@
 </block>
 <!--pages/info/withdraw.wxml-->
 <block wx:if='{{show}}'>
-    <block wx:if='{{openbind}}'>
+    <!-- <block wx:if='{{openbind}}'>
         <view class="oy_form_list flex flex-ver">
             <view class="oy_form_title flex flex-ver">
                 <view class="oy_form_pointer">*</view>
@@ -23,7 +23,7 @@
                 <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
             </navigator>
         </view>
-    </block>
+    </block> -->
     <block wx:if='{{!diyform.template_flag}}'>
         <block wx:if='{{!openbind}}'>
             <view class="oy_form_list flex flex-ver">

@@ -5,27 +5,51 @@
   <view class="oy_form_image"><image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/1.png"></image></view>  
   <view class="oy_form_list flex flex-ver">
       <view class="oy_form_title flex flex-ver">
-          <view>团长</view>
+          <view>自由团长</view>
       </view>
       <view class="flex-1 oy_form_right flex flex-col">
         <text class="oy_form_right_text">自由团长 实名验证</text>
         <text  class="oy_form_right_bottom_text">免费申请，零零门槛，零投资，零压力</text>
       </view>
-      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="ziyou">
-          <view class="oy_nav_shenqing" >立即申请</view>
-          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="ziyou" wx:if="{{partner_apply.status==-1}}">
+        <view class="oy_nav_shenqing" >立即申请</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box"  data-shen="ziyou" wx:if="{{partner_apply.status==0}}">
+        <view class="oy_nav_shenqing" >未审核</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidianid" data-id="{{partner_apply.id}}" wx:if="{{partner_apply.status==1}}">
+        <view class="oy_nav_shenqing" >已审核</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" data-shen="ziyou" wx:if="{{partner_apply.status==2}}">
+        <view class="oy_nav_shenqing" >审核不通过</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
       </view>
   </view>
   <view class="oy_form_list flex flex-ver">
       <view class="oy_form_title flex flex-ver">
-          <view>团长</view>
+          <view>实体团长</view>
       </view>
       <view class="flex-1 oy_form_right flex flex-col">
         <text class="oy_form_right_text">实体店老板 实名验证</text>
         <text  class="oy_form_right_bottom_text">免费申请，零零门槛，零投资，零压力</text>
       </view>
-      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="shitidian">
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="shitidian" wx:if="{{partner_shop_apply.status==-1}}">
           <view class="oy_nav_shenqing" >立即申请</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" data-shen="shitidian" wx:if="{{partner_shop_apply.status==0}}">
+          <view class="oy_nav_shenqing" >未审核</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidianid" data-id="{{partner_shop_apply.id}}" wx:if="{{partner_shop_apply.status==1}}">
+          <view class="oy_nav_shenqing" >已审核</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" data-shen="shitidian" wx:if="{{partner_shop_apply.status==2}}">
+          <view class="oy_nav_shenqing" >审核不通过</view>
           <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
       </view>
   </view>
@@ -37,9 +61,21 @@
         <text class="oy_form_right_text">实名验证</text>
         <text  class="oy_form_right_bottom_text">只要一次购买700 VIP 消费卡</text>
       </view>
-      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="yunying" >
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="yunying" wx:if="{{operate_centre_apply.status==-1}}">
           <view class="oy_nav_shenqing" >立即申请</view>
           <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" data-shen="yunying" wx:if="{{operate_centre_apply.status==0}}" >
+        <view class="oy_nav_shenqing" >未审核</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidianid" data-id="{{operate_centre_apply.id}}" wx:if="{{operate_centre_apply.status==1}}" >
+        <view class="oy_nav_shenqing" >已审核</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" data-shen="yunying" wx:if="{{operate_centre_apply.status==2}}" >
+        <view class="oy_nav_shenqing" >审核不通过</view>
+        <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
       </view>
   </view>
   <view class="oy_form_list flex flex-ver">
@@ -50,8 +86,20 @@
         <text class="oy_form_right_text">实名验证</text>
         <text  class="oy_form_right_bottom_text">省代授权营销运营费须要支付70万</text>
       </view>
-      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="fengongsi">
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidian" data-shen="fengongsi" wx:if="{{branch_office_apply.status==-1}}">
           <view class="oy_nav_shenqing" >立即申请</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box"  data-shen="fengongsi" wx:if="{{branch_office_apply.status==0}}">
+          <view class="oy_nav_shenqing" >未审核</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box" bindtap="shitidianid" data-id="{{branch_office_apply.id}}" wx:if="{{branch_office_apply.status==1}}">
+          <view class="oy_nav_shenqing" >已审核</view>
+          <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
+      </view>
+      <view  class="flex flex-ver oy_nav_box"  data-shen="fengongsi" wx:if="{{branch_office_apply.status==2}}">
+          <view class="oy_nav_shenqing" >审核不通过</view>
           <image mode='aspectFill' src="../../img/oy_all@2x.png"></image>
       </view>
   </view>

@@ -37,7 +37,7 @@
     </block>
   </view>
 
-  <view class='sort'>
+  <!-- <view class='sort'>
     <view data-order='' bindtap='bindSort' class='item {{(params.order ==  "" || !params.order)?"on":""}}'>
       <view class='text'>综合</view>
     </view>
@@ -54,7 +54,7 @@
         <image class='icon small' src='{{isfilter?"/static/images/icon-red/filter.png":"/static/images/icon/filter.png"}}' lazy-load='true'></image>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class='fui-goods-group {{listmode}}'>
     <block wx:for='{{list}}' wx:for-item='item' wx:for-index='index' wx:key="*this">
       <template is="tpl_list" data="{{ item:item }}" />

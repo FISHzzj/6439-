@@ -1,0 +1,9 @@
+<view class="shenhe">
+  <view>名称：{{nickname}}</view>
+  <view>手机：{{telephone}}</view>
+  <view>省份：{{province}}</view>
+  <view>城市：{{city}}</view>
+  <view>区域：{{area}}</view>
+  <view>详细地址：{{address}}</view>
+  <view>状态：审核通过</view>
+</view>

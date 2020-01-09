@@ -187,6 +187,11 @@ Page({
               })
             } else {
               e.alert(res.message);
+              setTimeout(function(){
+                wx.switchTab({
+                  url: "/pages/member/index/index"
+                })
+              },2000)
             }
 
           })

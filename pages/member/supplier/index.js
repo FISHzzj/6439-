@@ -63,7 +63,10 @@ Page({
     // var status = t.getCache("gysdl");
     // console.log(status);
     var e = this, i = a.pdata(m).cate;
-    e.setData({ cate: i });
+    e.setData({ 
+      cate: i,
+      showbtn: !1
+    });
 
   },
 
@@ -187,7 +190,6 @@ Page({
   },
   // 申请注册(联盟商家)
   formSubmit: function (submitData) {
-
     var a = this,
       zhanghao = a.data.zhanghao,
       upwd = a.data.upwd,
@@ -322,14 +324,16 @@ Page({
           data.license = imgarr[0];
           data.shopimages = imgarr[1] 
           e.post("supplier/apply", data, function (res) {
-            console.log(res);
-            // if (res.error == 0) {
-            //   wx.switchTab({
-            //     url: "/pages/member/index/index"
-            //   })
-            // } else {
-            //   e.alert(res.message);
-            // }
+            wx.showToast({
+              title: res.message,
+              icon: 'success',
+              duration: 2000
+            })
+            setTimeout(function(){
+              wx.switchTab({
+                url: "/pages/member/index/index"
+              })
+            },2000)
           })
         },
         allData

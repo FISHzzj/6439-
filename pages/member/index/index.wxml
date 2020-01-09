@@ -179,7 +179,7 @@
             <view class="oy_center_item_title">我的诚信IP</view>
           </view>
         </navigator>
-        <navigator url="/pages/member/fenxiang/index" class="oy_center_item1" hover-class='none'>
+        <navigator url="/pages/member/fenxiang/index" class="oy_center_item1" open-type="switchTab" hover-class='none'>
           <view class="flex flex-col flex-center oy_center_item_main oy_noline oy_border_bottom">
             <view class="oy_relative_box">
               <image mode="aspectFill" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/tui.png" class="oy_item_icon" lazy-load='true'></image>

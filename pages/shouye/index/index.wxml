@@ -1,8 +1,8 @@
 <view class="hade_box flex flex-center-align ">
-  <view class="hade_div flex flex-center-align ">
+  <navigator url='/pages/goods/index/index?fromsearch=1' hover-class="none"  class="hade_div flex flex-center-align ">
     <image class="hade_img" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/fdj_ke.png"></image>
     <input class="hade_input" placeholder="请输入你要购买的商品"></input>
-  </view>
+  </navigator>
   <image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/hong.png"></image>
 </view>
 <view class="carousel_box">
@@ -72,7 +72,7 @@
     <view>现卖,现摘,发现并摘果现场直播。</view> -->
   </view>
   <block wx:for="{{group_goods}}" wx:for-item="item" wx:key="*this">
-    <view class="goods_li">
+    <navigator url="/pages/shouye/pintuan/pintuan?id={{item.id}}" hover-class="none" class="goods_li">
       <image class="goods_img" src="{{item.thumb}}"></image>
       <view class="font_siz30 flex flex-jcsb">
         <text>{{item.title}}</text>
@@ -85,9 +85,9 @@
       </view>
       <view class="flex flex-jcsb flex-center-align">
         <text class="font_siz30 color_red">￥{{item.groupsprice }} <text class="font_siz25">原价{{item.singleprice }}元</text></text>
-        <view class="team_btn" bindtap="goto">我要拼团</view>
+        <view class="team_btn" >我要拼团</view>
       </view>
-    </view>
+    </navigator>
   </block>
 </view>
 <!-- 水果爆款 -->
@@ -97,7 +97,7 @@
     <view>现卖,现摘,发现并摘果现场直播。</view> -->
   </view>
   <block wx:for="{{goods}}" wx:for-item="item" wx:key="*this">
-    <view class="fruits_li">
+    <navigator url="/pages/goods/detail/index?id={{item.id}}" hover-class="none" class="fruits_li">
       <image class="fruits_img" src="{{item.thumb}}"></image>
       <view class="flex">
         <view class="flex flex-col bagr_red">
@@ -112,11 +112,11 @@
           </view>
           <view class="btn_box flex">
             <button bindtap='showShare'>去分享赚钱</button>
-            <navigator url="/pages/goods/detail/index?id={{item.id}}" hover-class="none">我要购买</navigator>
+            <view>我要购买</view>
           </view>
         </view>
       </view>
-    </view>
+    </navigator>
   </block>
 </view>
 <view class="til_box flex flex-col">

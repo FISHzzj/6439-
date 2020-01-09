@@ -12,7 +12,7 @@
 }
 .oy_form_title{
     color:#B4181B;
-    font-size: 45rpx;
+    font-size: 35rpx;
     width:190rpx;
     height:90rpx;
     white-space: nowrap;

@@ -41,6 +41,22 @@ Page({
       wx.navigateTo({
         url: '/pages/shouye/richang/index'
       })
+    } else if (index == '1'){
+      wx.navigateTo({
+        url: '/pages/shouye/shop_list/index'
+      })
+    } else if (index == '2') {
+      wx.navigateTo({
+        url: '/pages/shouye/shop_list/index'
+      })
+    } else if (index == '4') {
+      wx.navigateTo({
+        url: '/pages/shouye/shop_list/index'
+      })
+    } else if (index == '5') {
+      wx.navigateTo({
+        url: '/pages/shouye/shop_list/index'
+      })
     }
   },
   /**

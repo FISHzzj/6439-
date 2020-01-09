@@ -234,11 +234,13 @@ Page({
                   icon: 'success',
                   duration: 2000
                 })
-
+                setTimeout(function(){
+                  wx.switchTab({
+                    url: "/pages/member/index/index"
+                  })
+                },2000)
               });
-              // wx.switchTab({
-              //   url: "/pages/member/index/index"
-              // })
+          
             } else {
               e.alert(res.message);
             }

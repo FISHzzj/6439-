@@ -115,7 +115,16 @@ Page({
           url: "/pages/member/index/index"
         })
       } else {
-        e.alert(res.message);
+        wx.showToast({
+          title: res.message,
+          icon: 'success',
+          duration: 2000
+        })
+        setTimeout(function(){
+          wx.switchTab({
+            url: "/pages/member/index/index"
+          })
+        },2000)
       }
     })
   }

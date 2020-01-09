@@ -1,9 +1,10 @@
 <view class="su_container page">
   <view class="su_top_image"><image src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/fenxiangtoubu.png"></image> </view>
   <view class="su_tab flex flex-wrap flex-center flex-ver ">
-    <view bindtap='myTab' class='item item_left {{cate == ""?"active":""}}' data-cate=''>我有好货</view>
-    <view bindtap='myTab' class='item item_right {{cate == "shop"?"active":""}}' data-cate='shop' wx:if="{{!dlcheng}}">联盟商家</view>
-       <view bindtap='myTab' class='item item_right {{cate == "shop111"?"active":""}}' data-cate='shop111' wx:if="{{dlcheng==1}}">联盟商家</view>
+
+    <view bindtap='myTab' class='item item_left  {{cate == "shop"?"active":""}}' data-cate='shop' wx:if="{{!dlcheng}}">联盟商家</view>
+    <view bindtap='myTab' class='item item_left {{cate == "shop111"?"active":""}}' data-cate='shop111' wx:if="{{dlcheng==1}}">联盟商家</view>
+    <view bindtap='myTab' class='item item_right {{cate == ""?"active":""}}' data-cate=''>我有好货</view>
     <!-- <view bindtap='myTab' class='item item_right {{cate == "shiti"?"active":""}}' data-cate='shiti'>实体落地</view> -->
   </view>
   <block wx:if='{{cate == ""}}'>
