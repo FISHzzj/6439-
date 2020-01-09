@@ -2,7 +2,7 @@
 <import src="/utils/wxParse/wxParse.wxml" />
 <view class="w100">
   <view class="" style="height:500rpx;border:2rpx solid rgb(255,144,143);margin:0 20rpx;border-bottom:none">
-    <image style="width:100%;height:100%" src="/static/images/gratis_jie/bg_kan.png"></image>
+    <image style="width:100%;height:100%" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/yqkj.png"></image>
   </view>
   <view class="bg_pick p10 flex" style="margin: 0 20rpx">
     <view style="width:180rpx;height:160rpx">
@@ -19,11 +19,11 @@
     <button bindtap="zero" wx:if="{{info.res.status == 0 && info.res.now_price == 0}}" class="kanBg" style="line-height:1.5">我要0元领取</button>
     <button wx:if="{{info.res.status == -1}}" style="line-height:1.5">已过期</button>
     <button wx:if="{{info.res.status == 1}}" style="line-height:1.5">已领取</button>
-    <text wx:if="{{info.res.status == 0 && info.res.now_price != 0}}"  bindtap="mobilize">加油！还差{{info.res.remain_num}}次砍价</text>
+    <text wx:if="{{info.res.status == 0 && info.res.now_price != 0}}"  bindtap="">加油！还差{{info.res.remain_num}}次砍价</text>
     <text wx:if="{{info.res.status == -1}}">很抱歉，该活动已到期</text>
   </view>
   <view class="" style="height:200rpx;border:2rpx solid rgb(255,144,143);margin:0 20rpx;border-bottom:none;padding-bottom:20rpx">
-    <image style="width:100%;height:100%" src="../../../../../static/images/gratis_jie/kan.png"></image>
+    <image style="width:100%;height:100%" src="http://6439.iiio.top/addons/wx_shop/plugin/app/static/material/gz.png"></image>
   </view>
   <view class="bg_pick p10" style="margin: 0 20rpx;color:#fff">
     <view>活动说明</view>

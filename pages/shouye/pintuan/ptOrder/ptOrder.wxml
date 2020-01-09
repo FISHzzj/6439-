@@ -17,7 +17,7 @@
 <MoneyInfo money="{{allInfo.price}}" freight="{{allInfo.goods.freight}}"></MoneyInfo>
 
 <!-- 配送方式开始 -->
-<view class="p10 font16" style="border-top:2rpx solid #ccc;margin-bottom:375rpx;color:#888">
+<view class="p10 font16" style="border-top:2rpx solid #ccc;margin-bottom:675rpx;color:#888;height:620rpx">
   <view class="flex" style="justify-content:space-between">
     <text>配送方式</text>
     <view>

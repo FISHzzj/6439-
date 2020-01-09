@@ -35,11 +35,12 @@ Page({
   onShareAppMessage: function (res) {
     // console.log(res);
     return {
-        title: this.info.detail.title,
-        imageUrl: this.info.detail.thumb,
-        path: '/pages/shouye/gratis_jie/free/free?id=' + this.data.id +'take_id=' + this.data.take_id,
+        title: this.data.info.detail.title,
+        imageUrl: this.data.info.detail.thumb,
+        path: '/pages/shouye/gratis_jie/free/free?id=' + this.data.id +'&take_id=' + this.data.take_id,
         success: function (res) {
           console.log(res);
+
         }
     }
   },

@@ -101,6 +101,10 @@ Page({
       imageUrl: this.data.info.shopshare.imgUrl,
       path: '/pages/shouye/pintuan/pintuanShare/pintuanShare?teamid=' + this.data.teamid +'&mid=' + this.data.userId,
       success : function(res){
+        console.log('123');
+        console.log(res);
+      },
+      fail : function(res){
         console.log(res);
       }
     }

@@ -353,25 +353,25 @@ Page({
             wx.showToast({
               title: res.result.message,
             });
-            e.get('/groups/orders/order_chack',{
+            e.get('/groups/orders/order_chack',{   //查看成团状态
               orderid: res.result.order.orderid
             },i=>{
               console.log(data);
-              if (data.type == 'groups') {
-                if(i.status == 1){
+              if (data.type == 'groups') {   //拼团
+                if(i.status == 1){  //自己开团成功
                   setTimeout(function () {
                     wx.navigateTo({
                       url: '/pages/shouye/pintuan/pt_invitation/py_invitation?orderid=' + res.result.order.orderid + '&teamid=' + res.result.order.teamid,
                     })
                   }, 500);
-                }else{
+                }else{              //参团成功
                   setTimeout(function () {
                     wx.navigateTo({
                       url: '/pages/shouye/pintuan/pt_success/pt_success?teamid=' + res.result.order.teamid,
                     })
                   }, 500);
                 }
-              }else{
+              }else{                          //单买
                 console.log('进来了');
                 setTimeout(()=>{
                   wx.switchTab({

@@ -16,11 +16,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     this.setData({
       id : options.id,
       take_id : options.take_id
     });
-    t.setCache("take_id", {take_id : options.take_id}, 7200),
+    // t.setCache("take_id", {take_id : options.take_id}, 7200),
+    t.globalData.take_id = options.take_id;
+
+    console.log(t.globalData.take_id)
 
     this.getinfo();
   },
@@ -29,7 +33,7 @@ Page({
     console.log(t.getCache('userinfo'));
     if (t.getCache('userinfo')){
       wx.navigateTo({
-        url: '/pages/shouye/gratis_jie/free/freeOrder/freeOrder?goodsid=' + this.data.info.tgid + '&id=' + this.data.id,
+        url: '/pages/shouye/gratis_jie/free/freeOrder/freeOrder?goodsid=' + this.data.info.tgid + '&id=' + this.data.id + '&take_id=' + this.data.take_id,
       })
     }
     else{

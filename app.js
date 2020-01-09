@@ -120,6 +120,7 @@ App({
     api:  "https://6439.iiio.top/app/wx_shop_api.php?i=96",
     approot: "https://6439.iiio.top/addons/wx_shop/",
     userInfo: null,
-    ver: 315
+    ver: 315,
+    take_id : ''
 	}
 })

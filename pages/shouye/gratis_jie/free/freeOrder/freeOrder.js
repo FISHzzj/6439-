@@ -39,7 +39,7 @@ Page({
       }
     ],
     goodsid : '',
-    takeid : '',
+    takeid: '',
     id : ''
   },
 
@@ -49,9 +49,11 @@ Page({
   onLoad: function (options) {
     this.setData({
       goodsid: options.goodsid,
-      id : options.id
+      id : options.id,
     });
     this.getOrderInfo();
+    console.log(t.globalData.take_id);
+    
   },
 
   getOrderInfo: function () {
@@ -158,12 +160,15 @@ Page({
   gotoPay: function () {
     var _payType = this.data.payType;
     var d = this.data;
+    console.log('看看takeid' + t.globalData.take_id);
+    // return
     var data = {
       paytype: '',                        //支付类型
       pick_type: '',                        //提货方式
       addressid : '',                       //地址id
       pick_id : '',                         //提货网点、活动网点
-      goodsid: this.data.goodsid,                    //商品id
+      goodsid: d.goodsid,                    //商品id
+      take_id: t.globalData.take_id
     }
     console.log(_payType);
     // return
@@ -219,7 +224,7 @@ Page({
         console.log(res);
         var orderid = res.order.orderid;
         // return
-        if (data.paytype == 1) {
+        if (data.paytype == 1) {   //走微信支付
           // console.log(res);
           if (res.error == 0) {
             //微信支付
@@ -275,18 +280,19 @@ Page({
               
             // })
           }
-        } else {
+        } else {                   //走余额支付
           console.log(res);
           if (res.error != 0) {
             //余额支付失败
             wx.showToast({
               title: res.message,
             })
-          } else {
+          } else {                  
             //余额支付成功
             wx.showToast({
               title: res.message,
             });
+            console.log('康康状态--->' + res.take_record.take_type);
             if(res.take_record.take_type == 0){
               //发起的，去分享页面
               wx.navigateTo({
@@ -294,6 +300,9 @@ Page({
               })
             }else{
               //参与的，去订单页面
+              wx.navigateTo({
+                url: '/pages/order/index'
+              })
             }
           }
         }
@@ -313,7 +322,7 @@ Page({
    */
   onShow: function () {
     var pickAddress, address, huoAddress;
-    console.log(this.data.index);
+    // console.log(this.data.index);
     if (this.data.index == 1) {
       //提货点返回的
       pickAddress = t.getCache('pickAddress');

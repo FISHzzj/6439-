@@ -1,5 +1,8 @@
 /* pages/shouye/pintuan/ptOrder/ptOrder.wxss */
 
+page{
+  overflow-y:scroll;
+}
 .w100{
   width: 100%;
 }
